@@ -1,0 +1,5 @@
+(index):178 DOMContentLoaded fired. Theme toggle button: <button id=​"theme-toggle-btn" class=​"btn theme-toggle-btn">​☀️​</button>​
+(index):173 Applied theme: theme-cold
+content-script.js:22 Document already loaded, running initialization immediately
+content-script.js:4 Attempting to initialize AdUnit
+content-script.js:6 AdUnit initialized successfully

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Una Nota - Online</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- SDKs de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+
+    <div id="feedback-overlay"></div>
+
+    <div class="bg-shapes">
+        <div class="shape">♪</div>
+        <div class="shape">♫</div>
+        <div class="shape">♪</div>
+        <div class="shape">♫</div>
+        <div class="shape">♪</div>
+        <div class="shape">♫</div>
+    </div>
+
+    <div id="login-view" class="view-container">
+        <div class="glass-card">
+            <h1>En Una Nota</h1>
+            <h2>Ingresa tu nombre</h2>
+            <div class="input-wrapper">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z"/></svg>
+                <input type="text" id="username-input" placeholder="Tu nombre...">
+            </div>
+            <button id="login-btn" class="btn">Entrar</button>
+        </div>
+    </div>
+
+    <div id="player-view" class="view-container hidden">
+        <audio id="player-audio-player" style="display: none;"></audio>
+        <div class="glass-card">
+            <h1 id="welcome-player"></h1>
+            <h3 id="welcome-subtitle">¡Escuchá con atención!</h3>
+            <div class="tab-nav">
+                <button class="tab-link active" data-tab="juego-content">Juego</button>
+                <button class="tab-link" data-tab="reglas-content">Reglas</button>
+            </div>
+            <div id="juego-content" class="tab-content active">
+                <h2 id="feedback-display"></h2>
+                <button id="la-se-btn" class="btn">¡LA SÉ!</button>
+            </div>
+            <div id="reglas-content" class="tab-content">
+                <pre>
+- Apreta el botón cuando sepas la canción
+- Para ganar puedes: _ Tararear/cantar aproximadamente 5 segundos
+                     _ Decir Nombre Y Artista de la canción
+
+- Por cada acierto se suma 1 punto
+- Si erras, se resta 1 punto
+                </pre>
+            </div>
+            <button id="theme-toggle-btn" class="btn theme-toggle-btn">☀️</button> <!-- Theme Toggle Button -->
+        </div>
+    </div>
+
+    <div id="ready-view" class="hidden">
+        <img src="assets/logo.png" alt="Logo" class="logo-animated">
+        <button id="ready-btn" class="btn">Presiona aquí cuando estés listo</button>
+    </div>
+
+    <div id="mod-view" class="hidden">
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" />
+                </g>
+            </svg>
+        </div>
+        <div id="point-notifications-container" class="point-notification-container"></div> <!-- Point Notifications Container -->
+        <div class="container">
+            <h1>Panel del Moderador</h1>
+            <div class="controls mod-card">
+                <p>Canción: <span id="current-song">Ninguna</span></p>
+                <audio id="audio-player"></audio>
+                <button id="play-btn" class="btn">Play</button>
+                <button id="pause-btn" class="btn">Pause</button>
+                <input type="range" id="song-progress" value="0">
+                <div class="volume-control-container">
+                    <label for="volume-control">Volumen:</label>
+                    <input type="range" id="volume-control" min="0" max="100" value="100">
+                    <span id="volume-percentage">100%</span>
+                </div>
+            </div>
+            <div id="pulsaciones" class="mod-card">
+                <div id="pulsaciones-header">
+                    <h2>Pulsaciones</h2>
+                </div>
+                <div id="buzz-list"></div>
+            </div>
+            <div id="song-list-container" class="mod-card">
+                <h2>Lista de Canciones</h2>
+                <div id="song-list"></div>
+            </div>
+            <div class="top-right-buttons">
+                <button id="temp-leaderboard-btn" class="btn">Mostrar Leaderboard</button>
+                <button id="reset-scores-btn" class="btn">Reiniciar Puntos</button>
+                <button id="end-game-btn" class="btn">Finalizar Juego</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="temp-leaderboard-view" class="hidden">
+        <div class="temp-leaderboard-card">
+            <h2>Puntajes Actuales</h2>
+            <div id="temp-leaderboard-list"></div>
+        </div>
+    </div>
+
+    <div id="podium-view" class="hidden">
+        <h1>🏆 Resultados Finales 🏆</h1>
+        <div id="podium-container"></div>
+        <button id="show-leaderboard-btn" class="btn" style="margin-top: 40px;">Ver Leaderboard Completo</button>
+    </div>
+
+    <div id="leaderboard-view" class="view-container hidden">
+        <div class="glass-card" style="max-width: 800px; width: 90%;">
+            <h1 style="position: relative; text-align: center;">Leaderboard Completo</h1>
+            <button id="close-leaderboard-btn" class="btn" style="position:absolute; top:25px; right:25px; padding: 5px 15px;">X</button>
+            <div id="leaderboard-list"></div>
+        </div>
+    </div>
+
+    <!-- Audio Elements for Feedback -->
+    <audio id="correct-sound" src="assets/correcto.mp3" preload="auto"></audio>
+    <audio id="incorrect-sound" src="assets/incorrecto.mp3" preload="auto"></audio>
+
+    <script>
+        // --- CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyCaFrccA8u-NV8dg3KmD2cKxJAHChmV9z8",
+            authDomain: "en-una-nota.firebaseapp.com",
+            databaseURL: "https://en-una-nota-default-rtdb.firebaseio.com",
+            projectId: "en-una-nota",
+            storageBucket: "en-una-nota.appspot.com",
+            messagingSenderId: "1007889402379",
+            appId: "1:1007889402379:web:80bf4c7e0acb92d3ead50e",
+            measurementId: "G-0913QVFJXE"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // --- ELEMENTOS UI ---
+        const loginView = document.getElementById('login-view'), playerView = document.getElementById('player-view'), modView = document.getElementById('mod-view'), podiumView = document.getElementById('podium-view');
+        const usernameInput = document.getElementById('username-input'), loginBtn = document.getElementById('login-btn');
+        const welcomePlayer = document.getElementById('welcome-player'), laSeBtn = document.getElementById('la-se-btn'), feedbackDisplay = document.getElementById('feedback-display');
+        const playerAudioPlayer = document.getElementById('player-audio-player');
+        const modAudioPlayer = document.getElementById('audio-player'), playBtn = document.getElementById('play-btn'), pauseBtn = document.getElementById('pause-btn'), songProgress = document.getElementById('song-progress'), songListContainer = document.getElementById('song-list'), currentSongSpan = document.getElementById('current-song');
+        const buzzList = document.getElementById('buzz-list'), endGameBtn = document.getElementById('end-game-btn'), resetScoresBtn = document.getElementById('reset-scores-btn');
+        const podiumContainer = document.getElementById('podium-container');
+        const feedbackOverlay = document.getElementById('feedback-overlay');
+        const readyView = document.getElementById('ready-view');
+        const readyBtn = document.getElementById('ready-btn');
+        const leaderboardView = document.getElementById('leaderboard-view');
+        const showLeaderboardBtn = document.getElementById('show-leaderboard-btn');
+        const closeLeaderboardBtn = document.getElementById('close-leaderboard-btn');
+        const leaderboardList = document.getElementById('leaderboard-list');
+        const volumeControl = document.getElementById('volume-control');
+        const volumePercentage = document.getElementById('volume-percentage');
+        // New Audio elements
+        const correctSound = document.getElementById('correct-sound');
+        const incorrectSound = document.getElementById('incorrect-sound');
+        // Point Notifications Container
+        const pointNotificationsContainer = document.getElementById('point-notifications-container');
+        // Temporary Leaderboard Elements
+        const tempLeaderboardBtn = document.getElementById('temp-leaderboard-btn');
+        const tempLeaderboardView = document.getElementById('temp-leaderboard-view');
+        const tempLeaderboardList = document.getElementById('temp-leaderboard-list');
+
+
+        let username = '';
+
+        // --- LÓGICA PRINCIPAL ---
+        loginBtn.addEventListener('click', () => {
+            const enteredUser = usernameInput.value.trim().replace(/[.#$\[\]]/g, '_');
+            if (!enteredUser) return alert('Por favor, ingresa un nombre.');
+            username = enteredUser;
+
+            if (username === 'MOD123') {
+                loginView.classList.add('hidden');
+                modView.classList.remove('hidden');
+                initModView();
+            } else {
+                loginView.classList.add('hidden');
+                readyView.classList.remove('hidden');
+
+                playerAudioPlayer.play().catch(() => {});
+                playerAudioPlayer.pause();
+
+                readyBtn.addEventListener('click', () => {
+                    readyView.classList.add('hidden');
+                    playerView.classList.remove('hidden');
+                    initPlayerView();
+                }, { once: true });
+            }
+        });
+
+        showLeaderboardBtn.addEventListener('click', () => {
+            podiumView.classList.add('hidden');
+            leaderboardView.classList.remove('hidden');
+        });
+
+        closeLeaderboardBtn.addEventListener('click', () => {
+            leaderboardView.classList.add('hidden');
+            podiumView.classList.remove('hidden');
+        });
+
+        leaderboardList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('details-btn')) {
+                e.target.classList.toggle('expanded');
+                const detailsPanel = e.target.closest('.leaderboard-entry').querySelector('.leaderboard-details');
+                detailsPanel.classList.toggle('expanded');
+            }
+        });
+
+        // --- VISTA DE JUGADOR ---
+        function initPlayerView() {
+            welcomePlayer.textContent = `¡Suerte, ${username}!`;
+            setupTabs();
+            listenForFeedback();
+            listenForGameState();
+            listenForPlayback();
+            listenForTempLeaderboard(); // Listen for temporary leaderboard events
+        }
+
+        function setupTabs() {
+            const tabNav = playerView.querySelector('.tab-nav');
+            tabNav.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('tab-link')) return;
+                const tabId = e.target.dataset.tab;
+                tabNav.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                playerView.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                playerView.querySelector(`#${tabId}`).classList.add('active');
+            });
+        }
+
+        laSeBtn.addEventListener('click', handleLaSeButtonClick);
+
+        document.addEventListener('keydown', (e) => {
+            console.log('Keydown event fired:', e.code);
+            console.log('playerView hidden status:', playerView.classList.contains('hidden'));
+            console.log('laSeBtn disabled status:', laSeBtn.disabled);
+            console.log('Active element:', document.activeElement);
+
+            if (e.code === 'Space' && !playerView.classList.contains('hidden')) {
+                // Prevent default scroll behavior for spacebar
+                e.preventDefault(); 
+                // Only trigger if the button is not disabled
+                if (!laSeBtn.disabled) {
+                    console.log('Triggering handleLaSeButtonClick from spacebar');
+                    handleLaSeButtonClick();
+                } else {
+                    console.log('laSeBtn is disabled, not triggering.');
+                }
+            }
+        });
+
+        function handleLaSeButtonClick() {
+            const buzzRef = db.ref(`game/buzzes/${username}`);
+            buzzRef.set({ time: firebase.database.ServerValue.TIMESTAMP });
+            laSeBtn.disabled = true;
+            laSeBtn.textContent = 'ESPERANDO...';
+        }
+
+
+        function listenForFeedback() {
+            const feedbackRef = db.ref(`game/feedback/${username}`);
+            feedbackRef.on('value', (snapshot) => {
+                const feedback = snapshot.val();
+                if (feedback) {
+                    if (feedback === 'neutral') {
+                        snapshot.ref.remove();
+                        laSeBtn.disabled = false;
+                        laSeBtn.textContent = '¡LA SÉ!';
+                        return;
+                    }
+
+                    const isCorrect = feedback === 'correct';
+                    feedbackDisplay.textContent = isCorrect ? '¡Correcto!' : 'Incorrecto';
+                    
+                    feedbackOverlay.classList.add(isCorrect ? 'correct' : 'incorrect'); // Corrected to use classList.add
+                    feedbackOverlay.classList.add('active');
+                    
+                    feedbackDisplay.classList.add('show');
+
+                    // Play sound
+                    if (isCorrect) {
+                        correctSound.play();
+                    } else {
+                        incorrectSound.volume = 0.4; // 40% of original volume
+                        incorrectSound.play();
+                    }
+
+                    snapshot.ref.remove();
+
+                    // Shorter duration for vignette effect
+                    setTimeout(() => {
+                        feedbackOverlay.classList.add('fade-out'); // Trigger CSS fade-out
+                        feedbackDisplay.classList.remove('show'); // Hide text immediately
+                    }, 400); // Display vignette and text for 400ms
+
+                    setTimeout(() => {
+                        // Corrected: Remove all relevant classes to fully reset the overlay
+                        feedbackOverlay.classList.remove('active', 'fade-out', 'correct', 'incorrect');
+                        laSeBtn.disabled = false;
+                        laSeBtn.textContent = '¡LA SÉ!';
+                    }, 800); // Total duration for feedback effect (400ms display + 400ms fade-out)
+                }
+            });
+        }
+
+        function listenForPlayback() {
+            const playbackRef = db.ref('game/playback');
+            playbackRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (!data) return;
+
+                if (data.volume !== undefined && playerAudioPlayer.volume !== data.volume) {
+                    playerAudioPlayer.volume = data.volume;
+                }
+
+                if (data.src && !playerAudioPlayer.src.endsWith(data.src)) {
+                    playerAudioPlayer.src = data.src;
+                    playerAudioPlayer.oncanplaythrough = () => {
+                        playerAudioPlayer.oncanplaythrough = null;
+                        if (data.state === 'playing') {
+                            const serverTime = data.timestamp || 0;
+                            const clientTime = new Date().getTime();
+                            const latency = Math.max(0, (clientTime - serverTime) / 1000.0);
+                            playerAudioPlayer.currentTime = data.currentTime + latency;
+                            playerAudioPlayer.play().catch(e => console.log("Playback blocked by browser."));
+                        } else if (data.state === 'paused') {
+                            playerAudioPlayer.pause();
+                            playerAudioPlayer.currentTime = data.currentTime;
+                        }
+                    };
+                } else {
+                    if (data.state === 'playing' && playerAudioPlayer.paused) {
+                        const serverTime = data.timestamp || 0;
+                        const clientTime = new Date().getTime();
+                        const latency = Math.max(0, (clientTime - serverTime) / 1000.0);
+                        playerAudioPlayer.currentTime = data.currentTime + latency;
+                        playerAudioPlayer.play().catch(e => console.log("Playback blocked by browser."));
+                    } else if (data.state === 'paused' && !playerAudioPlayer.paused) {
+                        playerAudioPlayer.pause();
+                        playerAudioPlayer.currentTime = data.currentTime;
+                    }
+                }
+            });
+        }
+
+        // --- VISTA DE MODERADOR ---
+        function initModView() {
+            db.ref('game').set({
+                state: 'playing',
+                leaderboard: {},
+                buzzes: {},
+                feedback: {},
+                playback: { state: 'paused', src: '', currentTime: 0, nombre: 'Ninguna', volume: 1 },
+                stats: {},
+                totalSongsPlayed: 0,
+                showTempLeaderboard: false // Initialize the temporary leaderboard state
+            });
+            
+            modAudioPlayer.volume = 1;
+            volumeControl.value = 100;
+            volumePercentage.textContent = '100%';
+
+            volumeControl.addEventListener('input', (e) => {
+                const newVolume = e.target.value / 100;
+                modAudioPlayer.volume = newVolume;
+                volumePercentage.textContent = `${e.target.value}%`;
+                db.ref('game/playback').update({ volume: newVolume });
+            });
+
+            loadSongs();
+            listenForBuzzes();
+            listenForGameState();
+            listenForTempLeaderboard(); // Moderator also listens for temporary leaderboard events
+            buzzList.addEventListener('click', handleBuzzListClick);
+
+            resetScoresBtn.addEventListener('click', () => {
+                if (confirm('¿Estás seguro de que quieres reiniciar TODOS los puntajes a cero? Esta acción no se puede deshacer.')) {
+                    db.ref('game/leaderboard').remove();
+                    db.ref('game/stats').remove();
+                    db.ref('game/totalSongsPlayed').set(0);
+                    db.ref('game/buzzes').remove();
+                }
+            });
+
+            endGameBtn.addEventListener('click', () => {
+                if(confirm('¿Estás seguro?')) {
+                    modAudioPlayer.pause();
+                    db.ref('game/state').set('finished');
+                }
+            });
+
+            tempLeaderboardBtn.addEventListener('click', () => {
+                db.ref('game/showTempLeaderboard').set(true);
+                setTimeout(() => {
+                    db.ref('game/showTempLeaderboard').set(false);
+                }, 5000); // Show for 5 seconds
+            });
+        }
+
+        function formatTimestamp(ms) {
+            const d = new Date(ms);
+            return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}:${String(d.getMilliseconds()).padStart(3, '0')}`;
+        }
+
+        function listenForBuzzes() {
+            const buzzesRef = db.ref('game/buzzes');
+            buzzesRef.on('child_added', (snapshot) => {
+                const buzz = snapshot.val();
+                const playerUsername = snapshot.key;
+                const buzzEntry = document.createElement('div');
+                buzzEntry.className = 'buzz-entry';
+                buzzEntry.id = `buzz-${playerUsername}`;
+                buzzEntry.innerHTML = `<span class="player-info"><strong>${playerUsername}</strong><span class="timestamp">${formatTimestamp(buzz.time)}</span></span><span class="feedback-buttons"><button class="btn btn-feedback correct">✅</button><button class="btn btn-feedback neutral">🔄</button><button class="btn btn-feedback incorrect">❌</button></span>`;
+                buzzList.appendChild(buzzEntry);
+            });
+            buzzesRef.on('child_removed', (snapshot) => {
+                const playerUsername = snapshot.key;
+                const entry = document.getElementById(`buzz-${playerUsername}`);
+                if(entry) entry.remove();
+            });
+        }
+
+        function handleBuzzListClick(event) {
+            const button = event.target.closest('.btn-feedback');
+            if (!button) return;
+            const buzzEntry = button.closest('.buzz-entry');
+            const playerUsername = buzzEntry.id.replace('buzz-', '');
+
+            if (button.classList.contains('neutral')) {
+                db.ref(`game/feedback/${playerUsername}`).set('neutral');
+                db.ref(`game/buzzes/${playerUsername}`).remove();
+                return;
+            }
+
+            const feedback = button.classList.contains('correct') ? 'correct' : 'incorrect';
+            const scoreRef = db.ref(`game/leaderboard/${playerUsername}`);
+            const statsRef = db.ref(`game/stats/${playerUsername}`);
+
+            let message = '';
+            let messageClass = '';
+            let icon = '';
+
+            if (feedback === 'correct') {
+                scoreRef.transaction((currentScore) => (currentScore || 0) + 1);
+                statsRef.child('correct').transaction(c => (c || 0) + 1);
+                db.ref('game/totalSongsPlayed').transaction(c => (c || 0) + 1);
+                message = `${playerUsername} ha sumado un punto!`;
+                messageClass = 'added';
+                icon = '✅';
+            } else {
+                scoreRef.transaction((currentScore) => (currentScore || 0) - 1);
+                statsRef.child('incorrect').transaction(c => (c || 0) + 1);
+                message = `${playerUsername} ha restado un punto!`;
+                messageClass = 'subtracted';
+                icon = '❌';
+            }
+            
+            // Display notification
+            const notification = document.createElement('div');
+            notification.className = `point-notification ${messageClass}`;
+            notification.innerHTML = `<span class="icon">${icon}</span><span>${message}</span>`;
+            pointNotificationsContainer.prepend(notification); // Add to top
+
+            // Trigger show animation
+            setTimeout(() => notification.classList.add('show'), 50);
+
+            // Hide and remove notification after a delay
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.addEventListener('transitionend', () => notification.remove(), { once: true });
+            }, 3000); // 3 seconds display time
+
+            db.ref(`game/feedback/${playerUsername}`).set(feedback);
+            db.ref(`game/buzzes/${playerUsername}`).remove();
+        }
+
+        // --- LÓGICA COMPARTIDA ---
+        function listenForGameState() {
+            db.ref('game/state').on('value', (snapshot) => {
+                if (snapshot.val() === 'finished') {
+                    db.ref().off();
+                    modView.classList.add('hidden');
+                    playerView.classList.add('hidden');
+                    loginView.classList.add('hidden');
+                    readyView.classList.add('hidden');
+                    podiumView.classList.remove('hidden');
+                    displayPodium();
+                    displayLeaderboard(); // Pre-calcula la leaderboard
+                }
+            });
+        }
+
+        // --- TEMPORARY LEADERBOARD LOGIC ---
+        function listenForTempLeaderboard() {
+            db.ref('game/showTempLeaderboard').on('value', (snapshot) => {
+                if (snapshot.val()) {
+                    updateTempLeaderboard();
+                    tempLeaderboardView.classList.remove('hidden');
+                    setTimeout(() => tempLeaderboardView.classList.add('show'), 10); // Small delay to trigger CSS transition
+                } else {
+                    tempLeaderboardView.classList.remove('show');
+                    // Add hidden class after transition completes
+                    setTimeout(() => tempLeaderboardView.classList.add('hidden'), 500); 
+                }
+            });
+        }
+
+        function updateTempLeaderboard() {
+            db.ref('game/leaderboard').once('value', (snapshot) => {
+                const leaderboard = snapshot.val() || {};
+                const sortedPlayers = Object.entries(leaderboard).sort(([,a],[,b]) => b - a);
+                
+                let leaderboardHTML = '';
+                if (sortedPlayers.length === 0) {
+                    leaderboardHTML = '<p style="text-align: center;">Aún no hay puntos para mostrar.</p>';
+                } else {
+                    sortedPlayers.forEach(([name, score], index) => {
+                        let rankClass = '';
+                        if (index === 0) rankClass = 'rank-1';
+                        else if (index === 1) rankClass = 'rank-2';
+                        else if (index === 2) rankClass = 'rank-3';
+
+                        leaderboardHTML += `
+                            <div class="temp-entry ${rankClass}">
+                                <span class="temp-name">${name}</span>
+                                <span class="temp-score">${score} pts</span>
+                            </div>
+                        `;
+                    });
+                }
+                tempLeaderboardList.innerHTML = leaderboardHTML;
+            });
+        }
+
+        function displayPodium() {
+            db.ref('game/leaderboard').once('value', (snapshot) => {
+                const leaderboard = snapshot.val() || {};
+                const sortedPlayers = Object.entries(leaderboard).sort(([,a],[,b]) => b - a);
+                const top3 = sortedPlayers.slice(0, 3);
+                const podiumSteps = [ [2, (top3[1] || [])], [1, (top3[0] || [])], [3, (top3[2] || [])] ];
+                podiumContainer.innerHTML = podiumSteps.map(([pos, data]) => {
+                    if (!data || !data[0]) return '';
+                    const [name, score] = data;
+                    return `<div class="podium-step" id="step-${pos}"><h3>${name}</h3><p>${score} pts</p></div>`;
+                }).join('');
+            });
+        }
+
+        async function displayLeaderboard() {
+            const gameRef = db.ref('game');
+            const gameSnapshot = await gameRef.once('value');
+            const gameData = gameSnapshot.val() || {};
+
+            const leaderboard = gameData.leaderboard || {};
+            const stats = gameData.stats || {};
+
+            const playerNames = Object.keys(leaderboard);
+            const sortedPlayers = playerNames.sort((a, b) => leaderboard[b] - leaderboard[a]);
+
+            let leaderboardHTML = '';
+            for (const playerName of sortedPlayers) {
+                const score = leaderboard[playerName];
+                const playerStats = stats[playerName] || {};
+                const correct = playerStats.correct || 0;
+                const incorrect = playerStats.incorrect || 0;
+                const totalAttempts = correct + incorrect;
+                
+                const precision = totalAttempts > 0 ? ((correct / totalAttempts) * 100).toFixed(1) : '0.0';
+
+                leaderboardHTML += `
+                    <div class="leaderboard-entry">
+                        <div class="leaderboard-header">
+                            <span class="player-name">${playerName}</span>
+                            <span class="player-score">${score} pts</span>
+                            <button class="details-btn">+</button>
+                        </div>
+                        <div class="leaderboard-details">
+                            <p><strong>Precisión:</strong> ${precision}%</p>
+                            <p><strong>Aciertos:</strong> ${correct}</p>
+                            <p><strong>Errores:</strong> ${incorrect}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            leaderboardList.innerHTML = leaderboardHTML || '<p style="text-align: center; margin-top: 20px;">No hay datos para mostrar.</p>';
+        }
+
+        async function loadSongs() {
+            try {
+                const response = await fetch('assets/canciones.json');
+                const songs = await response.json();
+                songListContainer.innerHTML = '';
+                songs.forEach(song => {
+                    const el = document.createElement('div');
+                    el.textContent = song.nombre; el.className = 'song-item';
+                    el.onclick = () => {
+                        modAudioPlayer.src = song.ruta;
+                        currentSongSpan.textContent = song.nombre;
+                        db.ref('game/playback').update({
+                            src: song.ruta,
+                            nombre: song.nombre,
+                            state: 'paused',
+                            currentTime: 0,
+                            volume: modAudioPlayer.volume
+                        });
+                    };
+                    songListContainer.appendChild(el);
+                });
+            } catch (error) { console.error('Error:', error); }
+        }
+
+        playBtn.addEventListener('click', () => {
+            modAudioPlayer.play();
+            db.ref('game/playback').update({
+                state: 'playing',
+                currentTime: modAudioPlayer.currentTime,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            });
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            modAudioPlayer.pause();
+            db.ref('game/playback').update({
+                state: 'paused',
+                currentTime: modAudioPlayer.currentTime
+            });
+        });
+
+        modAudioPlayer.addEventListener('timeupdate', () => {
+            if (modAudioPlayer.duration) songProgress.value = (modAudioPlayer.currentTime / modAudioPlayer.duration) * 100;
+        });
+
+        songProgress.addEventListener('input', () => {
+            if (modAudioPlayer.duration) {
+                const newTime = (songProgress.value / 100) * modAudioPlayer.duration;
+                modAudioPlayer.currentTime = newTime;
+                db.ref('game/playback').update({
+                    currentTime: newTime,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                });
+            }
+        });
+
+        // --- THEME TOGGLE LOGIC ---
+        const themeToggleButton = document.getElementById('theme-toggle-btn');
+        let currentTheme = localStorage.getItem('theme') || 'theme-warm'; // Default to warm
+
+        function applyTheme(themeName) {
+            document.body.className = ''; // Clear existing theme classes
+            document.body.classList.add(themeName);
+            localStorage.setItem('theme', themeName);
+            // Update button text/icon based on theme
+            if (themeToggleButton) {
+                themeToggleButton.textContent = themeName === 'theme-warm' ? '☀️' : '🌙';
+            }
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'theme-warm' ? 'theme-cool' : 'theme-warm';
+            applyTheme(currentTheme);
+        }
+
+        // Apply theme on initial load
+        applyTheme(currentTheme);
+
+        // Event listener for the theme toggle button
+        if (themeToggleButton) {
+            themeToggleButton.addEventListener('click', toggleTheme);
+        }
+
+    </script>
+</body>
+</html>
