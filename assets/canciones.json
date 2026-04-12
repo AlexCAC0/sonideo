@@ -1,174 +1,202 @@
-[
-  {
-    "nombre": "Aaron Smith - Dancin (Lyrics)",
-    "ruta": "assets/audio/Aaron Smith - Dancin (Lyrics).mp3"
-  },
-  {
-    "nombre": "Alan Walker - Faded (Lyrics)",
-    "ruta": "assets/audio/Alan Walker - Faded (Lyrics).mp3"
-  },
-  {
-    "nombre": "Andrés Calamaro⧸⧸Flaca",
-    "ruta": "assets/audio/Andrés Calamaro⧸⧸Flaca.mp3"
-  },
-  {
-    "nombre": "Arctic Monkeys - 505",
-    "ruta": "assets/audio/Arctic Monkeys - 505.mp3"
-  },
-  {
-    "nombre": "Avicii - The Nights (Lyrics)",
-    "ruta": "assets/audio/Avicii - The Nights (Lyrics).mp3"
-  },
-  {
-    "nombre": "Billie Eilish - bad guy (Lyrics)",
-    "ruta": "assets/audio/Billie Eilish - bad guy (Lyrics).mp3"
-  },
-  {
-    "nombre": "BoyWithUke - Toxic (Lyrics) ｜ All my friends are toxic",
-    "ruta": "assets/audio/BoyWithUke - Toxic (Lyrics) ｜ All my friends are toxic.mp3"
-  },
-  {
-    "nombre": "Carly Rae Jepsen - Call Me Maybe (Lyrics)",
-    "ruta": "assets/audio/Carly Rae Jepsen - Call Me Maybe (Lyrics).mp3"
-  },
-  {
-    "nombre": "Dominic Fike - Babydoll (Lyrics)",
-    "ruta": "assets/audio/Dominic Fike - Babydoll (Lyrics).mp3"
-  },
-  {
-    "nombre": "DUKI - Ameri",
-    "ruta": "assets/audio/DUKI - Ameri.mp3"
-  },
-  {
-    "nombre": "DUKI - Malbec (prod. Bizarrap, Yesan, Asan)",
-    "ruta": "assets/audio/DUKI - Malbec (prod. Bizarrap, Yesan, Asan).mp3"
-  },
-  {
-    "nombre": "DUKI-C.R.O - FVCKLUV (PROD BY. YS.BLES)",
-    "ruta": "assets/audio/DUKI-C.R.O - FVCKLUV (PROD BY. YS.BLES).mp3"
-  },
-  {
-    "nombre": "Ed Sheeran - Shape of You (Lyrics)",
-    "ruta": "assets/audio/Ed Sheeran - Shape of You (Lyrics).mp3"
-  },
-  {
-    "nombre": "Fluorescent Adolescent - Arctic Monkeys (Lyrics)",
-    "ruta": "assets/audio/Fluorescent Adolescent - Arctic Monkeys (Lyrics).mp3"
-  },
-  {
-    "nombre": "Foster The People - Pumped Up Kicks (Lyrics)",
-    "ruta": "assets/audio/Foster The People - Pumped Up Kicks (Lyrics).mp3"
-  },
-  {
-    "nombre": "Gorillaz  19-2000 (lyrics)",
-    "ruta": "assets/audio/Gorillaz  19-2000 (lyrics).mp3"
-  },
-  {
-    "nombre": "Gorillaz - Orange County ft Bizarrap, Kara Jackson, Anoushka Shankar",
-    "ruta": "assets/audio/Gorillaz - Orange County ft Bizarrap, Kara Jackson, Anoushka Shankar.mp3"
-  },
-  {
-    "nombre": "Harry Styles - As It Was (Lyrics)",
-    "ruta": "assets/audio/Harry Styles - As It Was (Lyrics).mp3"
-  },
-  {
-    "nombre": "Imagine Dragons - Radioactive (Lyrics)",
-    "ruta": "assets/audio/Imagine Dragons - Radioactive (Lyrics).mp3"
-  },
-  {
-    "nombre": "Juanes - A Dios Le Pido (Lyrics⧸letra)",
-    "ruta": "assets/audio/Juanes - A Dios Le Pido (Lyrics⧸letra).mp3"
-  },
-  {
-    "nombre": "Katy Perry - Firework (Lyrics)",
-    "ruta": "assets/audio/Katy Perry - Firework (Lyrics).mp3"
-  },
-  {
-    "nombre": "Lil Nas X - Old Town Road (Lyrics) feat Billy Ray Cyrus",
-    "ruta": "assets/audio/Lil Nas X - Old Town Road (Lyrics) feat Billy Ray Cyrus.mp3"
-  },
-  {
-    "nombre": "LMFAO - Party Rock Anthem (Lyrics) ft. Lauren Bennett, GoonRock",
-    "ruta": "assets/audio/LMFAO - Party Rock Anthem (Lyrics) ft. Lauren Bennett, GoonRock.mp3"
-  },
-  {
-    "nombre": "Los Piojos - Bicho de ciudad (Con letra)",
-    "ruta": "assets/audio/Los Piojos - Bicho de ciudad (Con letra).mp3"
-  },
-  {
-    "nombre": "M83 'Midnight City' Official video",
-    "ruta": "assets/audio/M83 'Midnight City' Official video.mp3"
-  },
-  {
-    "nombre": "Måneskin - Beggin' (Lyrics⧸Testo)",
-    "ruta": "assets/audio/Måneskin - Beggin' (Lyrics⧸Testo).mp3"
-  },
-  {
-    "nombre": "Marc Anthony - Ahora Quien ⧸⧸ Letra",
-    "ruta": "assets/audio/Marc Anthony - Ahora Quien ⧸⧸ Letra.mp3"
-  },
-  {
-    "nombre": "Maroon 5 - Animals (Lyrics)",
-    "ruta": "assets/audio/Maroon 5 - Animals (Lyrics).mp3"
-  },
-  {
-    "nombre": "MGMT - Kids (Lyrics)",
-    "ruta": "assets/audio/MGMT - Kids (Lyrics).mp3"
-  },
-  {
-    "nombre": "OneRepublic - Counting Stars (Lyrics)",
-    "ruta": "assets/audio/OneRepublic - Counting Stars (Lyrics).mp3"
-  },
-  {
-    "nombre": "Radiohead - Creep (Lyrics)",
-    "ruta": "assets/audio/Radiohead - Creep (Lyrics).mp3"
-  },
-  {
-    "nombre": "Rihanna - Diamonds",
-    "ruta": "assets/audio/Rihanna - Diamonds.mp3"
-  },
-  {
-    "nombre": "SEE YOU AGAIN featuring Kali Uchis",
-    "ruta": "assets/audio/SEE YOU AGAIN featuring Kali Uchis.mp3"
-  },
-  {
-    "nombre": "Shakira - Waka Waka (Esto es África) ⧸⧸ Lyrics + Español ⧸⧸ Video Oficial",
-    "ruta": "assets/audio/Shakira - Waka Waka (Esto es África) ⧸⧸ Lyrics + Español ⧸⧸ Video Oficial.mp3"
-  },
-  {
-    "nombre": "Sia - Chandelier (Lyrics)",
-    "ruta": "assets/audio/Sia - Chandelier (Lyrics).mp3"
-  },
-  {
-    "nombre": "Sia - Cheap Thrills (Lyrics) ft. Sean Paul",
-    "ruta": "assets/audio/Sia - Cheap Thrills (Lyrics) ft. Sean Paul.mp3"
-  },
-  {
-    "nombre": "Sia - Unstoppable (Lyrics)",
-    "ruta": "assets/audio/Sia - Unstoppable (Lyrics).mp3"
-  },
-  {
-    "nombre": "Simon & Garfunkel - The Sound Of Silence (Lyrics)",
-    "ruta": "assets/audio/Simon & Garfunkel - The Sound Of Silence (Lyrics).mp3"
-  },
-  {
-    "nombre": "Soda Stereo - Cuando Pase el Temblor (Official Video)",
-    "ruta": "assets/audio/Soda Stereo - Cuando Pase el Temblor (Official Video).mp3"
-  },
-  {
-    "nombre": "Somebody That I Used To Know ｜ Gotye ｜ Lyrics Video",
-    "ruta": "assets/audio/Somebody That I Used To Know ｜ Gotye ｜ Lyrics Video.mp3"
-  },
-  {
-    "nombre": "Talking Heads - Psycho killer (Lyrics) [from Stranger Things Season 4] Soundtrack",
-    "ruta": "assets/audio/Talking Heads - Psycho killer (Lyrics) [from Stranger Things Season 4] Soundtrack.mp3"
-  },
-  {
-    "nombre": "The Neighbourhood - Sweater Weather (Lyrics)",
-    "ruta": "assets/audio/The Neighbourhood - Sweater Weather (Lyrics).mp3"
-  },
-  {
-    "nombre": "Tones and I - Dance Monkey (Lyrics)",
-    "ruta": "assets/audio/Tones and I - Dance Monkey (Lyrics).mp3"
-  }
+﻿[
+    {
+        "nombre":  "001 - Lady Gaga, Bradley Cooper - Shallow (Lyrics) (A Star Is Born Soundtrack)",
+        "ruta":  "assets/audio/001 - Lady Gaga, Bradley Cooper - Shallow (Lyrics) (A Star Is Born Soundtrack).mp3"
+    },
+    {
+        "nombre":  "002 - Bruno Mars - When I Was Your Man (Lyrics)",
+        "ruta":  "assets/audio/002 - Bruno Mars - When I Was Your Man (Lyrics).mp3"
+    },
+    {
+        "nombre":  "003 - Linkin Park - In the End (Lyrics)",
+        "ruta":  "assets/audio/003 - Linkin Park - In the End (Lyrics).mp3"
+    },
+    {
+        "nombre":  "004 - The Killers - Mr Brightside (Lyrics)",
+        "ruta":  "assets/audio/004 - The Killers - Mr Brightside (Lyrics).mp3"
+    },
+    {
+        "nombre":  "005 - Ed Sheeran - Thinking out Loud (Lyrics)",
+        "ruta":  "assets/audio/005 - Ed Sheeran - Thinking out Loud (Lyrics).mp3"
+    },
+    {
+        "nombre":  "006 - Bruno Mars - That’s What I Like (Lyrics)",
+        "ruta":  "assets/audio/006 - Bruno Mars - That’s What I Like (Lyrics).mp3"
+    },
+    {
+        "nombre":  "007 - Bruno Mars - Locked Out Of Heaven (Lyrics)",
+        "ruta":  "assets/audio/007 - Bruno Mars - Locked Out Of Heaven (Lyrics).mp3"
+    },
+    {
+        "nombre":  "008 - Queen - Bohemian Rhapsody (Lyrics)",
+        "ruta":  "assets/audio/008 - Queen - Bohemian Rhapsody (Lyrics).mp3"
+    },
+    {
+        "nombre":  "009 - Travis Scott - goosebumps (Lyrics) ft. Kendrick Lamar",
+        "ruta":  "assets/audio/009 - Travis Scott - goosebumps (Lyrics) ft. Kendrick Lamar.mp3"
+    },
+    {
+        "nombre":  "010 - JUSTIN BIEBER - Love Yourself Lyrics",
+        "ruta":  "assets/audio/010 - JUSTIN BIEBER - Love Yourself Lyrics.mp3"
+    },
+    {
+        "nombre":  "011 - Juice Wrld - Lucid Dreams (Lyrics) 💔",
+        "ruta":  "assets/audio/011 - Juice Wrld - Lucid Dreams (Lyrics) 💔.mp3"
+    },
+    {
+        "nombre":  "012 - Post Malone - Circles (Lyrics)",
+        "ruta":  "assets/audio/012 - Post Malone - Circles (Lyrics).mp3"
+    },
+    {
+        "nombre":  "013 - Goo Goo Dolls - Iris (Lyrics)",
+        "ruta":  "assets/audio/013 - Goo Goo Dolls - Iris (Lyrics).mp3"
+    },
+    {
+        "nombre":  "014 - Bruno Mars - Just The Way You Are (Lyrics)",
+        "ruta":  "assets/audio/014 - Bruno Mars - Just The Way You Are (Lyrics).mp3"
+    },
+    {
+        "nombre":  "015 - The Weeknd - DIE FOR YOU (Lyrics)",
+        "ruta":  "assets/audio/015 - The Weeknd - DIE FOR YOU (Lyrics).mp3"
+    },
+    {
+        "nombre":  "016 - Dua Lipa - Don\u0027t Start Now (Lyrics)",
+        "ruta":  "assets/audio/016 - Dua Lipa - Don\u0027t Start Now (Lyrics).mp3"
+    },
+    {
+        "nombre":  "017 - Coldplay - Viva la Vida (Lyrics)",
+        "ruta":  "assets/audio/017 - Coldplay - Viva la Vida (Lyrics).mp3"
+    },
+    {
+        "nombre":  "018 - Harry Styles - Watermelon Sugar (Lyrics)",
+        "ruta":  "assets/audio/018 - Harry Styles - Watermelon Sugar (Lyrics).mp3"
+    },
+    {
+        "nombre":  "019 - Macklemore \u0026 Ryan Lewis - Can\u0027t Hold Us (Lyrics) ft. Ray Dalton",
+        "ruta":  "assets/audio/019 - Macklemore \u0026 Ryan Lewis - Can\u0027t Hold Us (Lyrics) ft. Ray Dalton.mp3"
+    },
+    {
+        "nombre":  "020 - Shawn Mendes, Camila Cabello - Señorita (Lyrics) Letra",
+        "ruta":  "assets/audio/020 - Shawn Mendes, Camila Cabello - Señorita (Lyrics) Letra.mp3"
+    },
+    {
+        "nombre":  "021 - Taylor Swift - Cruel Summer (Lyrics)",
+        "ruta":  "assets/audio/021 - Taylor Swift - Cruel Summer (Lyrics).mp3"
+    },
+    {
+        "nombre":  "022 - The Police - Every Breath You Take (Lyrics)",
+        "ruta":  "assets/audio/022 - The Police - Every Breath You Take (Lyrics).mp3"
+    },
+    {
+        "nombre":  "023 - Ed Sheeran - Photograph (Lyrics)",
+        "ruta":  "assets/audio/023 - Ed Sheeran - Photograph (Lyrics).mp3"
+    },
+    {
+        "nombre":  "024 - Post Malone - rockstar (Lyrics) ft. 21 Savage",
+        "ruta":  "assets/audio/024 - Post Malone - rockstar (Lyrics) ft. 21 Savage.mp3"
+    },
+    {
+        "nombre":  "025 - OneRepublic - Counting Stars (Lyrics)",
+        "ruta":  "assets/audio/025 - OneRepublic - Counting Stars (Lyrics).mp3"
+    },
+    {
+        "nombre":  "026 - Hozier - Take Me To Church (Lyrics)",
+        "ruta":  "assets/audio/026 - Hozier - Take Me To Church (Lyrics).mp3"
+    },
+    {
+        "nombre":  "027 - Tones and I - Dance Monkey (Lyrics)",
+        "ruta":  "assets/audio/027 - Tones and I - Dance Monkey (Lyrics).mp3"
+    },
+    {
+        "nombre":  "028 - Lady Gaga, Bruno Mars - Die With A Smile (Lyrics)",
+        "ruta":  "assets/audio/028 - Lady Gaga, Bruno Mars - Die With A Smile (Lyrics).mp3"
+    },
+    {
+        "nombre":  "029 - Tom Odell - Another Love (Lyrics)",
+        "ruta":  "assets/audio/029 - Tom Odell - Another Love (Lyrics).mp3"
+    },
+    {
+        "nombre":  "030 - Billie Eilish - BIRDS OF A FEATHER (Lyrics)",
+        "ruta":  "assets/audio/030 - Billie Eilish - BIRDS OF A FEATHER (Lyrics).mp3"
+    },
+    {
+        "nombre":  "031 - Vance Joy - Riptide (Lyrics)",
+        "ruta":  "assets/audio/031 - Vance Joy - Riptide (Lyrics).mp3"
+    },
+    {
+        "nombre":  "032 - The Chainsmokers \u0026 Coldplay - Something Just Like This (Lyrics)",
+        "ruta":  "assets/audio/032 - The Chainsmokers \u0026 Coldplay - Something Just Like This (Lyrics).mp3"
+    },
+    {
+        "nombre":  "033 - James Arthur - Say You Won\u0027t Let Go (Lyrics)",
+        "ruta":  "assets/audio/033 - James Arthur - Say You Won\u0027t Let Go (Lyrics).mp3"
+    },
+    {
+        "nombre":  "034 - Coldplay - Yellow Lyrics",
+        "ruta":  "assets/audio/034 - Coldplay - Yellow Lyrics.mp3"
+    },
+    {
+        "nombre":  "035 - Lord Huron - The Night We Met (Lyrics)",
+        "ruta":  "assets/audio/035 - Lord Huron - The Night We Met (Lyrics).mp3"
+    },
+    {
+        "nombre":  "036 - The Chainsmokers - Closer (Lyrics) ft. Halsey",
+        "ruta":  "assets/audio/036 - The Chainsmokers - Closer (Lyrics) ft. Halsey.mp3"
+    },
+    {
+        "nombre":  "037 - Arctic Monkeys - I Wanna Be Yours (Lyrics)",
+        "ruta":  "assets/audio/037 - Arctic Monkeys - I Wanna Be Yours (Lyrics).mp3"
+    },
+    {
+        "nombre":  "038 - Billie Eilish - lovely (Lyrics) ft. Khalid",
+        "ruta":  "assets/audio/038 - Billie Eilish - lovely (Lyrics) ft. Khalid.mp3"
+    },
+    {
+        "nombre":  "039 - Glass Animals - Heat Waves (Lyrics)",
+        "ruta":  "assets/audio/039 - Glass Animals - Heat Waves (Lyrics).mp3"
+    },
+    {
+        "nombre":  "040 - Imagine Dragons - Believer (Lyrics)",
+        "ruta":  "assets/audio/040 - Imagine Dragons - Believer (Lyrics).mp3"
+    },
+    {
+        "nombre":  "041 - The Kid LAROI, Justin Bieber - Stay (Lyrics)",
+        "ruta":  "assets/audio/041 - The Kid LAROI, Justin Bieber - Stay (Lyrics).mp3"
+    },
+    {
+        "nombre":  "042 - Ed Sheeran - Perfect",
+        "ruta":  "assets/audio/042 - Ed Sheeran - Perfect.mp3"
+    },
+    {
+        "nombre":  "043 - Drake - One Dance (Lyrics) ft. Wizkid \u0026 Kyla",
+        "ruta":  "assets/audio/043 - Drake - One Dance (Lyrics) ft. Wizkid \u0026 Kyla.mp3"
+    },
+    {
+        "nombre":  "044 - Post Malone, Swae Lee - Sunflower (Lyrics)",
+        "ruta":  "assets/audio/044 - Post Malone, Swae Lee - Sunflower (Lyrics).mp3"
+    },
+    {
+        "nombre":  "045 - Lewis Capaldi - Someone You Loved (Lyrics)",
+        "ruta":  "assets/audio/045 - Lewis Capaldi - Someone You Loved (Lyrics).mp3"
+    },
+    {
+        "nombre":  "046 - Harry Styles - As It Was (Lyrics)",
+        "ruta":  "assets/audio/046 - Harry Styles - As It Was (Lyrics).mp3"
+    },
+    {
+        "nombre":  "047 - The Weeknd - Starboy (Lyrics) ft. Daft Punk",
+        "ruta":  "assets/audio/047 - The Weeknd - Starboy (Lyrics) ft. Daft Punk.mp3"
+    },
+    {
+        "nombre":  "048 - The Neighbourhood - Sweater Weather (Lyrics)",
+        "ruta":  "assets/audio/048 - The Neighbourhood - Sweater Weather (Lyrics).mp3"
+    },
+    {
+        "nombre":  "049 - Ed Sheeran - Shape of You (Lyrics)",
+        "ruta":  "assets/audio/049 - Ed Sheeran - Shape of You (Lyrics).mp3"
+    },
+    {
+        "nombre":  "050 - The Weeknd - Blinding Lights (Lyrics)",
+        "ruta":  "assets/audio/050 - The Weeknd - Blinding Lights (Lyrics).mp3"
+    }
 ]
