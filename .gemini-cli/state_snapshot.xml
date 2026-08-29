@@ -1,0 +1,57 @@
+<state_snapshot>
+  <description>
+    This is a web-based musical quiz game with moderator and player views, Firebase integration for real-time updates, and theme-toggling functionality.
+  </description>
+  <tech_stack>
+    - Frontend: HTML, CSS, JavaScript
+    - Realtime Database: Firebase Realtime Database
+    - Deployment: Netlify (configured via `netlify.toml`)
+    - Local Server: `http-server` (via `npm run dev`)
+  </tech_stack>
+  <features>
+    - **User Login:** Players enter a username; "MOD123" grants moderator access.
+    - **Theme Toggling:** Users can switch between 'cold' and 'warm' themes.
+    - **Player View:**
+      - Displays a welcome message.
+      - Tabs for "Juego" (game) and "Reglas" (rules).
+      - "¡LA SÉ!" button for buzzing in.
+      - Visual and auditory feedback for correct/incorrect answers.
+      - Real-time audio playback synchronized with the moderator.
+    - **Moderator View:**
+      - Controls song playback (play/pause, progress, volume).
+      - Displays a list of songs loaded from `assets/canciones.json`.
+      - Shows a real-time list of "buzzes" from players.
+      - Buttons to mark player feedback as correct, neutral, or incorrect, updating scores.
+      - Options to reset scores and end the game.
+    - **Podium & Leaderboard:**
+      - Displays top 3 players on a podium after the game ends.
+      - A full leaderboard with player scores and stats (precision, correct/incorrect answers).
+  </features>
+  <project_structure>
+    - `index.html`: Main application entry point, containing all UI and JavaScript logic.
+    - `assets/`:
+      - `audio/`: Contains MP3 audio files for songs (`canciones.json` references these) and feedback sounds (`correct.mp3`, `incorrect.mp3`).
+      - `canciones.json`: JSON file listing available songs with their names and paths.
+      - `logo.png`: Application logo.
+      - `reglas.txt`: Text file containing game rules.
+      - `style.css`: Stylesheet for the application, including theme definitions and new feedback bullet styles.
+    - `netlify.toml`: Netlify configuration for deployment.
+    - `package.json`: Node.js project configuration, defines `start` script as `http-server -c-1`.
+    - `package-lock.json`: Records exact dependency versions.
+  </project_structure>
+  <technical_details>
+    - **Firebase Integration:** The application uses Firebase Realtime Database for state management across moderator and player clients. Data is structured under a `game` node with sub-nodes for `leaderboard`, `buzzes`, `feedback`, `playback`, `stats`, and `totalSongsPlayed`.
+    - **Firebase API Key:** The Firebase API key (`AIzaSyCaFrccA8u-NV8dg3KmD2cKxJAHChmV9z8`) is directly exposed in `index.html`, which is a **security concern**. In a production environment, this should be handled using environment variables or a secure backend.
+    - **Real-time Synchronization:** Song playback, buzzes, and feedback are synchronized in real-time using Firebase listeners (`.on('value')`).
+    - **Audio Playback:** Uses HTML5 `<audio>` elements. For player synchronization, a latency calculation is applied when `playerAudioPlayer.play()` is called.
+    - **Theming:** Leverages CSS classes (`theme-cold`, `theme-warm`) on the `body` element, with the preference stored in `localStorage`.
+    - **Feedback Mechanism:** When the moderator provides feedback, the `feedback-display` element on the player's screen visually indicates correct/incorrect with a bullet-style animation and plays a corresponding sound (`assets/audio/correct.mp3` or `assets/audio/incorrect.mp3`). This replaces the previous `feedback-overlay` approach.
+    - **Game Rules:** The `reglas.txt` file specifies rules like "Apreta el botón cuando sepas la canción", but the `index.html` structure (displaying `feedback-display` when a player 'buzzes in' and moderator then provides feedback) deviates slightly, implying moderator validation rather than immediate player self-scoring based on a "know the song" button.
+    - **Local Development:** The `npm run dev` command starts `http-server -c-1`, serving the application on `http://localhost:8080` by default. The `-c-1` flag disables caching.
+    - **`powershell -Command` Issue:** During development, attempts to use `run_shell_command` with `powershell -Command python -c "..."` for multi-line string replacements failed due to PowerShell misinterpreting Python code as its own commands, highlighting a limitation in directly executing complex embedded scripts in this manner. This resulted in malformed CSS initially.
+  </technical_details>
+  <open_questions>
+    - How should the Firebase API key be securely managed in a production deployment?
+    - Are there any plans to refine the game rules or the feedback mechanism (e.g., allow players to input answers directly)?
+  </open_questions>
+</state_snapshot>
