@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonideo - Temporada 2</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body class="theme-warm">
+
+    <div class="mesh-bg"></div>
+    <div id="feedback-overlay"></div>
+    <div id="feedback-display"></div>
+
+    <!-- FASE 2 CURTAIN OVERLAY -->
+    <div id="fase2-curtain" class="curtain-overlay hidden">
+        <div class="t2-badge" style="margin-bottom: 20px;">
+            <span class="t2-highlight">SONIDEO</span> • FASE 2
+        </div>
+        <div class="curtain-title">¡PASANDO A FASE 2!</div>
+        <p style="font-size: 1.3rem; opacity: 0.9; margin-top: 10px;">🎸 Preparen sus oídos para los stems instrumentales 🥁</p>
+        <div class="soundwave-bar-container" style="margin-top: 30px;">
+            <div class="soundwave-bar"></div>
+            <div class="soundwave-bar"></div>
+            <div class="soundwave-bar"></div>
+            <div class="soundwave-bar"></div>
+            <div class="soundwave-bar"></div>
+        </div>
+    </div>
+
+    <!-- MODAL PUNTUACION FASE 2 -->
+    <div id="mod-score-modal" class="modal-overlay hidden">
+        <div class="score-modal-card">
+            <div class="t2-badge" style="margin-bottom: 15px;">
+                <span class="t2-highlight">FASE 2</span> • ASIGNAR PUNTOS
+            </div>
+            <h2 id="modal-player-name" style="font-size: 1.8rem; margin: 0 0 20px 0; color: var(--clr-accent);">Jugador</h2>
+            
+            <button class="score-option-btn" onclick="confirmPhase2Score(3)">
+                <span>🎸 Solo Bajo</span>
+                <strong style="color: #00ffcc;">+3 PTS</strong>
+            </button>
+            <button class="score-option-btn" onclick="confirmPhase2Score(2)">
+                <span>🥁 Bajo + Drums</span>
+                <strong style="color: #fbbf24;">+2 PTS</strong>
+            </button>
+            <button class="score-option-btn" onclick="confirmPhase2Score(1)">
+                <span>🎹 Bajo + Drums + Extras</span>
+                <strong style="color: #a855f7;">+1 PT</strong>
+            </button>
+            
+            <button class="btn btn-primary" style="margin-top: 15px; width: 100%; opacity: 0.6; padding: 12px;" onclick="closeScoreModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <button id="theme-toggle-btn" class="theme-toggle-btn" title="Cambiar tema">✨</button>
+
+    <!-- LOGIN VIEW -->
+    <div id="login-view" class="view-container">
+        <div class="glass-card">
+            <div class="t2-badge">
+                <span class="t2-highlight">SONIDEO</span> • NEO SOUNDWAVE
+            </div>
+            <img src="assets/logo.png" alt="Sonideo Logo" style="width: 110px; margin: 10px auto 15px auto; filter: drop-shadow(0 0 15px rgba(34,211,238,0.4));">
+            <h1>Sonideo</h1>
+            <h2>El gran comeback</h2>
+            
+            <div class="soundwave-bar-container">
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+            </div>
+
+            <div class="input-wrapper" style="width: 100%;">
+                <input type="text" id="username-input" placeholder="¿Cómo te llamas?" autocomplete="off">
+            </div>
+            
+            <button id="login-btn" class="btn btn-primary" style="margin-top: 28px; width: 100%;">Comenzar Juego</button>
+        </div>
+    </div>
+
+    <!-- PLAYER VIEW -->
+    <div id="player-view" class="view-container hidden">
+        <audio id="player-audio-player" style="display: none;"></audio>
+        
+        <div class="glass-card" style="max-width: 800px;">
+            <div id="player-fase-badge" class="t2-badge" style="margin-bottom: 15px;">
+                <span class="t2-highlight">SONIDEO</span> • EN VIVO
+            </div>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; margin-bottom: 25px; text-align: center;">
+                <h1 id="welcome-player" style="font-size: 2.4rem; text-align: center; margin: 0;">¡Hola!</h1>
+                <div style="text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--clr-accent); background: rgba(34,211,238,0.1); padding: 6px 18px; border-radius: 99px; border: 1px solid rgba(34,211,238,0.25);">
+                    ⚡ Sincronizado en Tiempo Real
+                </div>
+            </div>
+
+            <div id="juego-content" class="tab-content active" style="width: 100%;">
+                <button id="la-se-btn" class="btn">¡LA SÉ!</button>
+                <p style="margin-top: 18px; opacity: 0.75; font-size: 0.95rem; text-align: center;">Presiona el botón o usa la <strong>Barra Espaciadora</strong></p>
+                
+                <div id="player-rules-box" style="text-align: center; background: rgba(0,0,0,0.25); padding: 22px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.08); margin-top: 28px;">
+                    <p style="margin: 6px 0; text-align: center;">🎯 <strong>+1 punto</strong> por cada acierto.</p>
+                    <p style="margin: 6px 0; text-align: center;">❌ <strong>-1 punto</strong> por cada error.</p>
+                    <p style="margin: 6px 0; text-align: center;">🎤 Para ganar: tararea 5 segundos o indica título y artista exacto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- READY VIEW -->
+    <div id="ready-view" class="view-container hidden">
+        <div class="glass-card">
+            <div class="t2-badge">
+                <span class="t2-highlight">ARENA DE JUEGO</span>
+            </div>
+            <h1>¡Prepárate!</h1>
+            <h2>El show está a punto de comenzar</h2>
+            
+            <div class="soundwave-bar-container" style="margin: 30px auto;">
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+            </div>
+
+            <button id="ready-btn" class="btn btn-primary" style="margin-top: 20px; padding: 20px 60px; font-size: 1.2rem;">¡Estoy Listo!</button>
+        </div>
+    </div>
+
+    <!-- MODERATOR VIEW -->
+    <div id="mod-view" class="view-container hidden">
+        <div id="point-notifications-container" style="position: fixed; top: 20px; right: 20px; z-index: 2000;"></div>
+        <audio id="audio-player"></audio>
+        
+        <div class="mod-layout">
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="mod-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h1 style="font-size: 1.6rem; margin: 0; text-align: left;">Consola de Moderación</h1>
+                        <span id="mod-fase-badge" class="t2-badge" style="margin: 0;"><span class="t2-highlight">MOD</span> FASE 1</span>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 22px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; text-align: center;">
+                        <p style="margin: 0; font-size: 0.8rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Reproduciendo ahora:</p>
+                        <h2 id="current-song" style="font-size: 1.8rem; margin: 8px 0; color: var(--clr-accent); font-weight: 800; text-align: center;">Cargando catálogo...</h2>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <button id="play-btn" class="btn btn-primary" style="background: var(--clr-accent); color: #090d16; font-weight: 900;">▶ Play</button>
+                        <button id="pause-btn" class="btn btn-primary" style="opacity: 0.6;">⏸ Pause</button>
+                        <input type="range" id="song-progress" value="0" style="flex: 1;">
+                    </div>
+
+                    <div style="margin-top: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <span style="font-size: 0.85rem; font-weight: 700;">Vol:</span>
+                            <input type="range" id="volume-control" min="0" max="100" value="100" style="width: 100px;">
+                            <span id="volume-percentage" style="font-size: 0.85rem; color: var(--clr-accent);">100%</span>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="temp-leaderboard-btn" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.85rem;">🏆 Puntajes</button>
+                            <button id="reset-scores-btn" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.85rem; opacity: 0.6;">🔄 Reiniciar</button>
+                            <button id="action-phase-btn" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.85rem; background: linear-gradient(135deg, #00ffcc, #8b5cf6); color: #000; font-weight: 900;">⚡ Pasar a Fase 2</button>
+                            <button id="end-game-btn" class="btn btn-primary hidden" style="padding: 10px 18px; font-size: 0.85rem; background: var(--clr-neon);">🏁 Finalizar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mod-card" style="flex: 1;">
+                    <h2 style="font-size: 1.2rem; margin-bottom: 20px; text-align: left; display: flex; align-items: center; gap: 10px;">
+                        ⚡ Pulsaciones en tiempo real
+                    </h2>
+                    <div id="buzz-list"></div>
+                </div>
+            </div>
+
+            <div class="mod-card" style="display: flex; flex-direction: column;">
+                <h2 id="mod-song-library-title" style="font-size: 1.2rem; margin-bottom: 20px; text-align: left;">🎵 Biblioteca de Canciones (Fase 1)</h2>
+                <div id="song-list" style="flex: 1;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEMP LEADERBOARD OVERLAY -->
+    <div id="temp-leaderboard-view" class="view-container hidden">
+        <div class="glass-card">
+            <div class="t2-badge">
+                <span class="t2-highlight">POSICIONES</span>
+            </div>
+            <h1>Tabla en Vivo</h1>
+            <div id="temp-leaderboard-list" style="margin-top: 25px; width: 100%;"></div>
+        </div>
+    </div>
+
+    <!-- PODIUM VIEW WITH DRAMATIC TENSION BANNER -->
+    <div id="podium-view" class="view-container hidden">
+        <div class="glass-card" style="max-width: 880px; width: 100%;">
+            <div class="t2-badge">
+                <span class="t2-highlight">RESULTADOS</span> • GRAN FINAL
+            </div>
+            <h1>🏆 Gran Podio 🏆</h1>
+            <div id="podium-tension-banner" class="podium-tension-banner">
+                🔥 CALCULANDO GANADORES... 🔥
+            </div>
+            <div id="podium-container"></div>
+            <button id="show-leaderboard-btn" class="btn btn-primary" style="margin-top: 40px;">Ver Tabla Completa</button>
+        </div>
+    </div>
+
+    <!-- FINAL LEADERBOARD VIEW -->
+    <div id="leaderboard-view" class="view-container hidden">
+        <div class="glass-card" style="max-width: 1000px; width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; width: 100%;">
+                <div style="text-align: left;">
+                    <span class="t2-badge" style="margin: 0;"><span class="t2-highlight">POSICIONES</span></span>
+                    <h1 style="font-size: 2.2rem; margin-top: 5px; text-align: left;">Tabla de Puntajes</h1>
+                </div>
+                <button id="close-leaderboard-btn" class="btn btn-primary" style="padding: 12px 24px;">Cerrar</button>
+            </div>
+            <div id="leaderboard-list" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <audio id="correct-sound" src="assets/correcto.mp3" preload="auto"></audio>
+    <audio id="incorrect-sound" src="assets/incorrecto.mp3" preload="auto"></audio>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCaFrccA8u-NV8dg3KmD2cKxJAHChmV9z8",
+            authDomain: "en-una-nota.firebaseapp.com",
+            databaseURL: "https://en-una-nota-default-rtdb.firebaseio.com",
+            projectId: "en-una-nota",
+            storageBucket: "en-una-nota.appspot.com",
+            messagingSenderId: "1007889402379",
+            appId: "1:1007889402379:web:80bf4c7e0acb92d3ead50e",
+            measurementId: "G-0913QVFJXE"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // UI Elements
+        const loginView = document.getElementById('login-view'), playerView = document.getElementById('player-view'), modView = document.getElementById('mod-view'), podiumView = document.getElementById('podium-view');
+        const usernameInput = document.getElementById('username-input'), loginBtn = document.getElementById('login-btn');
+        const welcomePlayer = document.getElementById('welcome-player'), laSeBtn = document.getElementById('la-se-btn'), playerFaseBadge = document.getElementById('player-fase-badge'), playerRulesBox = document.getElementById('player-rules-box');
+        const playerAudioPlayer = document.getElementById('player-audio-player');
+        const modAudioPlayer = document.getElementById('audio-player'), playBtn = document.getElementById('play-btn'), pauseBtn = document.getElementById('pause-btn'), songProgress = document.getElementById('song-progress'), songListContainer = document.getElementById('song-list'), currentSongSpan = document.getElementById('current-song');
+        const buzzList = document.getElementById('buzz-list'), endGameBtn = document.getElementById('end-game-btn'), actionPhaseBtn = document.getElementById('action-phase-btn'), resetScoresBtn = document.getElementById('reset-scores-btn'), modFaseBadge = document.getElementById('mod-fase-badge'), modSongLibraryTitle = document.getElementById('mod-song-library-title');
+        const podiumContainer = document.getElementById('podium-container');
+        const feedbackOverlay = document.getElementById('feedback-overlay'), feedbackDisplay = document.getElementById('feedback-display');
+        const readyView = document.getElementById('ready-view'), readyBtn = document.getElementById('ready-btn');
+        const leaderboardView = document.getElementById('leaderboard-view'), showLeaderboardBtn = document.getElementById('show-leaderboard-btn'), closeLeaderboardBtn = document.getElementById('close-leaderboard-btn'), leaderboardList = document.getElementById('leaderboard-list');
+        const volumeControl = document.getElementById('volume-control'), volumePercentage = document.getElementById('volume-percentage');
+        const correctSound = document.getElementById('correct-sound'), incorrectSound = document.getElementById('incorrect-sound');
+        const tempLeaderboardBtn = document.getElementById('temp-leaderboard-btn'), tempLeaderboardView = document.getElementById('temp-leaderboard-view'), tempLeaderboardList = document.getElementById('temp-leaderboard-list');
+        const fase2Curtain = document.getElementById('fase2-curtain'), modScoreModal = document.getElementById('mod-score-modal'), modalPlayerName = document.getElementById('modal-player-name');
+
+        let username = '';
+        let currentFase = 1;
+        let pendingScorePlayer = null;
+
+        const songsFase2 = [
+            { nombre: "001 - Feet Don't Fail Me Now (Drums)", ruta: "assets/audio/FASE2/feet don't fail me now - drums.wav" },
+            { nombre: "002 - Toco Y Me Voy (Drums + Bajo)", ruta: "assets/audio/FASE2/toco y me voy - drums+bajo.wav" },
+            { nombre: "003 - Feet Don't Fail Me Now (Completo)", ruta: "assets/audio/FASE2/feet don't fail me now - completo.wav" }
+        ];
+
+        // Login Logic
+        loginBtn.addEventListener('click', () => {
+            const enteredUser = usernameInput.value.trim().replace(/[.#$\[\]]/g, '_');
+            if (!enteredUser) return alert('Por favor, ingresa tu nombre');
+            username = enteredUser;
+
+            if (username === 'MOD123') {
+                loginView.classList.add('hidden');
+                modView.classList.remove('hidden');
+                initModView();
+            } else {
+                loginView.classList.add('hidden');
+                readyView.classList.remove('hidden');
+                playerAudioPlayer.play().catch(() => {}); playerAudioPlayer.pause();
+                readyBtn.addEventListener('click', () => {
+                    readyView.classList.add('hidden');
+                    playerView.classList.remove('hidden');
+                    initPlayerView();
+                }, { once: true });
+            }
+        });
+
+        showLeaderboardBtn.addEventListener('click', () => {
+            podiumView.classList.add('hidden');
+            leaderboardView.classList.remove('hidden');
+        });
+
+        closeLeaderboardBtn.addEventListener('click', () => {
+            leaderboardView.classList.add('hidden');
+            podiumView.classList.remove('hidden');
+        });
+
+        // Player View Logic
+        function initPlayerView() {
+            welcomePlayer.textContent = `¡Hola, ${username}!`;
+            listenForFeedback(); listenForGameState(); listenForPlayback(); listenForTempLeaderboard(); listenForFaseChange();
+        }
+
+        laSeBtn.addEventListener('click', () => {
+            db.ref(`game/buzzes/${username}`).set({ time: firebase.database.ServerValue.TIMESTAMP });
+            laSeBtn.disabled = true; laSeBtn.textContent = 'ESPERANDO...';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !playerView.classList.contains('hidden')) {
+                e.preventDefault(); if (!laSeBtn.disabled) laSeBtn.click();
+            }
+        });
+
+        function listenForFaseChange() {
+            db.ref('game/fase').on('value', (s) => {
+                const fase = s.val() || 1;
+                currentFase = fase;
+                if (fase === 2) {
+                    // Show Phase 2 Transition Curtain for players
+                    fase2Curtain.classList.remove('hidden');
+                    setTimeout(() => {
+                        document.body.className = 'theme-corrupted';
+                        playerFaseBadge.innerHTML = '<span class="t2-highlight">SONIDEO</span> • FASE 2';
+                        playerRulesBox.innerHTML = `
+                            <p style="margin: 6px 0; text-align: center;">🎸 <strong>+3 puntos</strong>: Acertar solo bajo</p>
+                            <p style="margin: 6px 0; text-align: center;">🥁 <strong>+2 puntos</strong>: Acertar bajo + drums</p>
+                            <p style="margin: 6px 0; text-align: center;">🎹 <strong>+1 punto</strong>: Acertar bajo + drums + extras</p>
+                            <p style="margin: 6px 0; text-align: center;">❌ <strong>-1 punto</strong>: Error</p>
+                        `;
+                    }, 500);
+
+                    setTimeout(() => {
+                        fase2Curtain.classList.add('hidden');
+                    }, 3500);
+                } else {
+                    document.body.className = 'theme-warm';
+                    playerFaseBadge.innerHTML = '<span class="t2-highlight">SONIDEO</span> • EN VIVO';
+                    playerRulesBox.innerHTML = `
+                        <p style="margin: 6px 0; text-align: center;">🎯 <strong>+1 punto</strong> por cada acierto.</p>
+                        <p style="margin: 6px 0; text-align: center;">❌ <strong>-1 punto</strong> por cada error.</p>
+                        <p style="margin: 6px 0; text-align: center;">🎤 Para ganar: tararea 5 segundos o indica título y artista exacto.</p>
+                    `;
+                }
+            });
+        }
+
+        function listenForFeedback() {
+            db.ref(`game/feedback/${username}`).on('value', (snapshot) => {
+                const feedback = snapshot.val();
+                if (!feedback) return;
+                if (feedback === 'neutral') {
+                    snapshot.ref.remove(); laSeBtn.disabled = false; laSeBtn.textContent = '¡LA SÉ!';
+                    return;
+                }
+                const isCorrect = feedback === 'correct';
+                feedbackOverlay.classList.add('active', isCorrect ? 'correct' : 'incorrect');
+                feedbackDisplay.textContent = isCorrect ? '✨ ¡Correcto! ✨' : '❌ Incorrecto ❌';
+                feedbackDisplay.classList.add('show');
+                
+                // Subtle volume
+                correctSound.volume = 0.08;
+                incorrectSound.volume = 0.05;
+                
+                if (isCorrect) correctSound.play(); else incorrectSound.play();
+                
+                snapshot.ref.remove();
+                setTimeout(() => {
+                    feedbackOverlay.classList.remove('active', 'correct', 'incorrect');
+                    feedbackDisplay.classList.remove('show');
+                    laSeBtn.disabled = false; laSeBtn.textContent = '¡LA SÉ!';
+                }, 2000);
+            });
+        }
+
+        function listenForPlayback() {
+            db.ref('game/playback').on('value', (snapshot) => {
+                const data = snapshot.val(); if (!data) return;
+                if (data.volume !== undefined) playerAudioPlayer.volume = data.volume;
+                if (data.src && !playerAudioPlayer.src.endsWith(data.src)) {
+                    playerAudioPlayer.src = data.src;
+                    playerAudioPlayer.oncanplaythrough = () => {
+                        playerAudioPlayer.oncanplaythrough = null;
+                        if (data.state === 'playing') {
+                            const latency = Math.max(0, (new Date().getTime() - (data.timestamp || 0)) / 1000.0);
+                            playerAudioPlayer.currentTime = data.currentTime + latency;
+                            playerAudioPlayer.play().catch(e => {});
+                        } else { playerAudioPlayer.pause(); playerAudioPlayer.currentTime = data.currentTime; }
+                    };
+                } else {
+                    if (data.state === 'playing' && playerAudioPlayer.paused) {
+                        const latency = Math.max(0, (new Date().getTime() - (data.timestamp || 0)) / 1000.0);
+                        playerAudioPlayer.currentTime = data.currentTime + latency;
+                        playerAudioPlayer.play().catch(e => {});
+                    } else if (data.state === 'paused' && !playerAudioPlayer.paused) {
+                        playerAudioPlayer.pause(); playerAudioPlayer.currentTime = data.currentTime;
+                    }
+                }
+            });
+        }
+
+        // Moderator View Logic
+        function initModView() {
+            db.ref('game').set({
+                state: 'playing', fase: 1, leaderboard: {}, buzzes: {}, feedback: {},
+                playback: { state: 'paused', src: '', currentTime: 0, nombre: 'Cargando...', volume: 1 },
+                stats: {}, totalSongsPlayed: 0, showTempLeaderboard: false
+            });
+            modAudioPlayer.volume = 1; volumeControl.value = 100;
+            volumeControl.addEventListener('input', (e) => {
+                const v = e.target.value / 100; modAudioPlayer.volume = v;
+                volumePercentage.textContent = `${e.target.value}%`;
+                db.ref('game/playback').update({ volume: v });
+            });
+            loadSongs(); listenForBuzzes(); listenForGameState(); listenForTempLeaderboard(); listenForFaseChangeMod();
+            buzzList.addEventListener('click', handleBuzzListClick);
+            
+            resetScoresBtn.addEventListener('click', () => { 
+                if (confirm('¿Reiniciar todo el juego?')) db.ref('game').update({ fase: 1, leaderboard: {}, stats: {}, buzzes: {}, totalSongsPlayed: 0 }); 
+            });
+
+            actionPhaseBtn.addEventListener('click', () => {
+                if (confirm('¿Pasar a la FASE 2 del juego?')) {
+                    db.ref('game/fase').set(2);
+                }
+            });
+
+            endGameBtn.addEventListener('click', () => { 
+                if(confirm('¿Finalizar la sesión de juego?')) { modAudioPlayer.pause(); db.ref('game/state').set('finished'); } 
+            });
+            
+            tempLeaderboardBtn.addEventListener('click', () => { db.ref('game/showTempLeaderboard').set(true); setTimeout(() => db.ref('game/showTempLeaderboard').set(false), 5000); });
+        }
+
+        function listenForFaseChangeMod() {
+            db.ref('game/fase').on('value', (s) => {
+                const fase = s.val() || 1;
+                currentFase = fase;
+                if (fase === 2) {
+                    modFaseBadge.innerHTML = '<span class="t2-highlight">MOD</span> FASE 2';
+                    modSongLibraryTitle.textContent = '🎵 Biblioteca (Fase 2 - Stems)';
+                    actionPhaseBtn.classList.add('hidden');
+                    endGameBtn.classList.remove('hidden');
+                    renderSongList(songsFase2);
+                } else {
+                    modFaseBadge.innerHTML = '<span class="t2-highlight">MOD</span> FASE 1';
+                    modSongLibraryTitle.textContent = '🎵 Biblioteca de Canciones (Fase 1)';
+                    actionPhaseBtn.classList.remove('hidden');
+                    endGameBtn.classList.add('hidden');
+                    loadSongs();
+                }
+            });
+        }
+
+        function listenForBuzzes() {
+            db.ref('game/buzzes').on('child_added', (snapshot) => {
+                const player = snapshot.key;
+                const entry = document.createElement('div');
+                entry.className = 'song-item'; entry.id = `buzz-${player}`;
+                entry.style.display = 'flex'; entry.style.justifyContent = 'space-between'; entry.style.alignItems = 'center';
+                entry.innerHTML = `<span><strong>${player}</strong></span>
+                    <div style="display: flex; gap: 6px;">
+                        <button class="btn btn-primary btn-ack" style="padding: 6px 12px; font-size: 0.75rem; background: #10b981; border: none;">Acierto</button>
+                        <button class="btn btn-primary btn-fail" style="padding: 6px 12px; font-size: 0.75rem; background: #f43f5e; border: none;">Error</button>
+                        <button class="btn btn-primary btn-retry" style="padding: 6px 12px; font-size: 0.75rem; opacity: 0.6; border: none;">Retry</button>
+                    </div>`;
+                buzzList.appendChild(entry);
+            });
+            db.ref('game/buzzes').on('child_removed', (snapshot) => {
+                const el = document.getElementById(`buzz-${snapshot.key}`); if(el) el.remove();
+            });
+        }
+
+        function handleBuzzListClick(e) {
+            const btn = e.target; if (!btn.classList.contains('btn')) return;
+            const player = btn.closest('.song-item').id.replace('buzz-', '');
+            if (btn.classList.contains('btn-retry')) { db.ref(`game/feedback/${player}`).set('neutral'); db.ref(`game/buzzes/${player}`).remove(); return; }
+            
+            const isCorrect = btn.classList.contains('btn-ack');
+            
+            if (isCorrect) {
+                if (currentFase === 2) {
+                    // Open Phase 2 score selection modal
+                    pendingScorePlayer = player;
+                    modalPlayerName.textContent = player;
+                    modScoreModal.classList.remove('hidden');
+                    return;
+                } else {
+                    // Phase 1 default +1
+                    awardPoints(player, 1);
+                }
+            } else {
+                // Error -1 pt
+                awardPoints(player, -1);
+            }
+        }
+
+        function awardPoints(player, points) {
+            const isCorrect = points > 0;
+            const scoreRef = db.ref(`game/leaderboard/${player}`);
+            scoreRef.transaction(s => (s || 0) + points);
+            
+            const statsRef = db.ref(`game/stats/${player}`);
+            statsRef.transaction(s => {
+                if (!s) s = { correct: 0, incorrect: 0 };
+                if (isCorrect) s.correct++; else s.incorrect++;
+                return s;
+            });
+
+            db.ref(`game/feedback/${player}`).set(isCorrect ? 'correct' : 'incorrect');
+            db.ref(`game/buzzes/${player}`).remove();
+        }
+
+        window.confirmPhase2Score = (pts) => {
+            if (pendingScorePlayer) {
+                awardPoints(pendingScorePlayer, pts);
+                pendingScorePlayer = null;
+            }
+            closeScoreModal();
+        };
+
+        window.closeScoreModal = () => {
+            modScoreModal.classList.add('hidden');
+            pendingScorePlayer = null;
+        };
+
+        function listenForGameState() {
+            db.ref('game/state').on('value', (s) => {
+                if (s.val() === 'finished') {
+                    db.ref().off(); loginView.classList.add('hidden'); playerView.classList.add('hidden');
+                    readyView.classList.add('hidden'); modView.classList.add('hidden'); podiumView.classList.remove('hidden');
+                    displayPodium();
+                }
+            });
+        }
+
+        function listenForTempLeaderboard() {
+            db.ref('game/showTempLeaderboard').on('value', (s) => {
+                if (s.val()) { 
+                    updateTempLeaderboard(); 
+                    tempLeaderboardView.classList.remove('hidden'); 
+                    tempLeaderboardView.style.zIndex = "3000";
+                }
+                else tempLeaderboardView.classList.add('hidden');
+            });
+        }
+
+        function updateTempLeaderboard() {
+            db.ref('game/leaderboard').once('value', (s) => {
+                const data = s.val() || {};
+                const sorted = Object.entries(data).sort(([,a],[,b]) => b - a);
+                tempLeaderboardList.innerHTML = sorted.map(([n, sc]) => `
+                    <div class="leaderboard-entry">
+                        <div class="leaderboard-header">
+                            <span>${n}</span>
+                            <strong style="color: var(--clr-accent);">${sc} pts</strong>
+                        </div>
+                    </div>`).join('');
+            });
+        }
+
+        function triggerConfetti() {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'confetti-canvas';
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100vw';
+            canvas.style.height = '100vh';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '9999';
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#fbbf24', '#ec4899', '#3b82f6', '#10b981', '#f59e0b', '#a855f7', '#06b6d4', '#ff007f'];
+            
+            for (let i = 0; i < 220; i++) {
+                particles.push({
+                    x: canvas.width / 2 + (Math.random() - 0.5) * 150,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 26,
+                    vy: Math.random() * -24 - 8,
+                    size: Math.random() * 12 + 6,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rSpeed: (Math.random() - 0.5) * 14,
+                    gravity: 0.45,
+                    opacity: 1
+                });
+            }
+            
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    p.rotation += p.rSpeed;
+                    p.opacity -= 0.005;
+                    if (p.opacity > 0) alive = true;
+                    
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.globalAlpha = Math.max(0, p.opacity);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+                    ctx.restore();
+                });
+                
+                if (alive) {
+                    requestAnimationFrame(render);
+                } else {
+                    canvas.remove();
+                }
+            }
+            render();
+        }
+
+        function displayPodium() {
+            document.body.classList.remove('winner-celebration');
+            const oldCanvas = document.getElementById('confetti-canvas');
+            if (oldCanvas) oldCanvas.remove();
+
+            db.ref('game').once('value', (s) => {
+                const gameData = s.val() || {};
+                const leaderboard = gameData.leaderboard || {};
+                const stats = gameData.stats || {};
+                
+                const sorted = Object.entries(leaderboard).sort(([,a],[,b]) => b - a);
+                
+                // Final Detailed Leaderboard
+                leaderboardList.innerHTML = sorted.map(([n, sc], i) => {
+                    const pStats = stats[n] || { correct: 0, incorrect: 0 };
+                    const total = pStats.correct + pStats.incorrect;
+                    const success = total > 0 ? Math.round((pStats.correct / total) * 100) : 0;
+                    
+                    return `
+                    <div class="leaderboard-entry" onclick="this.classList.toggle('active')">
+                        <div class="leaderboard-header">
+                            <span>#${i+1} ${n}</span>
+                            <strong style="color: var(--clr-accent);">${sc} pts</strong>
+                        </div>
+                        <div class="leaderboard-stats">
+                            <div class="stat-grid">
+                                <div class="stat-item"><span>Correctos</span><strong>${pStats.correct}</strong></div>
+                                <div class="stat-item"><span>Errores</span><strong>${pStats.incorrect}</strong></div>
+                                <div class="stat-item"><span>Éxito</span><strong>${success}%</strong></div>
+                            </div>
+                        </div>
+                    </div>`;
+                }).join('');
+
+                const tensionBanner = document.getElementById('podium-tension-banner');
+                if (tensionBanner) {
+                    tensionBanner.textContent = '⚡ REVELANDO RESULTADOS... ⚡';
+                    setTimeout(() => { tensionBanner.textContent = '🥉 3ER LUGAR REVELADO'; }, 1800);
+                    setTimeout(() => { tensionBanner.textContent = '🥈 2DO LUGAR REVELADO'; }, 3800);
+                    setTimeout(() => { tensionBanner.textContent = '🚨 ATENCIÓN... ¡EL CAMPEÓN ES! 🚨'; }, 5400);
+                    setTimeout(() => { 
+                        tensionBanner.textContent = '👑 ¡CAMPEÓN ABSOLUTO! 🏆';
+                        document.body.classList.add('winner-celebration');
+                        triggerConfetti();
+                    }, 6000);
+                }
+
+                const steps = [[1, sorted[1]], [0, sorted[0]], [2, sorted[2]]];
+                podiumContainer.innerHTML = steps.map(([idx, player]) => {
+                    const rank = idx + 1;
+                    const isWinner = rank === 1;
+                    const isEmpty = !player;
+                    const content = player ? `<h3>${player[0]}</h3><p>${player[1]} pts</p>` : '<h3>-</h3><p>0 pts</p>';
+                    
+                    return `
+                        <div class="podium-step ${isWinner ? 'winner-step' : ''} ${isEmpty ? 'is-empty' : ''}" id="step-${rank}">
+                            <div class="podium-glass"></div>
+                            ${isWinner && player ? '<div class="podium-crown">👑</div>' : ''}
+                            <div class="podium-content">
+                                ${content}
+                            </div>
+                            <div class="podium-rank">${rank}</div>
+                        </div>`;
+                }).join('');
+            });
+        }
+
+        function renderSongList(songs) {
+            songListContainer.innerHTML = songs.map(s => `<div class="song-item" onclick="selectSong('${s.ruta}', '${s.nombre}', this)">${s.nombre}</div>`).join('');
+        }
+
+        async function loadSongs() {
+            const res = await fetch('assets/canciones.json'); const songs = await res.json();
+            renderSongList(songs);
+        }
+
+        window.selectSong = (ruta, nombre, el) => {
+            document.querySelectorAll('.song-item').forEach(i => i.classList.remove('active'));
+            el.classList.add('active'); modAudioPlayer.src = ruta; currentSongSpan.textContent = nombre;
+            db.ref('game/playback').update({ src: ruta, nombre: nombre, state: 'paused', currentTime: 0, timestamp: 0 });
+        };
+
+        playBtn.addEventListener('click', () => {
+            modAudioPlayer.play();
+            db.ref('game/playback').update({ state: 'playing', currentTime: modAudioPlayer.currentTime, timestamp: new Date().getTime() });
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            modAudioPlayer.pause(); db.ref('game/playback').update({ state: 'paused', currentTime: modAudioPlayer.currentTime });
+        });
+
+        modAudioPlayer.addEventListener('timeupdate', () => { if(modAudioPlayer.duration) songProgress.value = (modAudioPlayer.currentTime / modAudioPlayer.duration) * 100; });
+        songProgress.addEventListener('input', () => {
+            if(modAudioPlayer.duration) {
+                const t = (songProgress.value / 100) * modAudioPlayer.duration;
+                modAudioPlayer.currentTime = t; db.ref('game/playback').update({ currentTime: t, timestamp: new Date().getTime() });
+            }
+        });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        let currentTheme = localStorage.getItem('theme') || 'theme-warm';
+        
+        function applyTheme(t) { 
+            if (currentFase !== 2) {
+                document.body.className = t; 
+                localStorage.setItem('theme', t);
+            }
+            themeBtn.textContent = t === 'theme-warm' ? '✨' : '❄️';
+        }
+        
+        themeBtn.addEventListener('click', () => { 
+            currentTheme = currentTheme === 'theme-warm' ? 'theme-cool' : 'theme-warm'; 
+            applyTheme(currentTheme); 
+        });
+        applyTheme(currentTheme);
+
+    </script>
+</body>
+</html>

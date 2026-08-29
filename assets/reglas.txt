@@ -1,0 +1,6 @@
+- Apreta el botón cuando sepas la canción
+- Para ganar puedes: _ Tararear/sarasear/cantar aproximadamente 5 segundos del tema
+                     _ Decir Nombre de la canción (no me importa el artista)
+- Por cada acierto se suma 1 punto
+- Si erras se resta 1 punto
+- Una vez apretes el botón, DEBES esperar a que el jurado a cargo te habilite
