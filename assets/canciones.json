@@ -1,194 +1,394 @@
 [
     {
-        "nombre": "01 - Outkast - Ms. Jackson (Lyrics)",
-        "ruta": "assets/audio/01 - Outkast - Ms. Jackson (Lyrics).mp3"
+        "nombre": "001 - Juanes - A Dios Le Pido Lyricsletra",
+        "ruta": "assets/audio/001 - Juanes - A Dios Le Pido Lyricsletra.mp3"
     },
     {
-        "nombre": "02 - Kanye West - Flashing Lights (Lyrics)",
-        "ruta": "assets/audio/02 - Kanye West - Flashing Lights (Lyrics).mp3"
+        "nombre": "01 - Outkast - Ms Jackson Lyrics",
+        "ruta": "assets/audio/01 - Outkast - Ms Jackson Lyrics.mp3"
     },
     {
-        "nombre": "03 - Plain White T's - Hey There Delilah (Lyrics)",
-        "ruta": "assets/audio/03 - Plain White T's - Hey There Delilah (Lyrics).mp3"
+        "nombre": "002 - Andy Lucas - Tanto La Queria Letra",
+        "ruta": "assets/audio/002 - Andy Lucas - Tanto La Queria Letra.mp3"
+    },
+    {
+        "nombre": "02 - Kanye West - Flashing Lights Lyrics",
+        "ruta": "assets/audio/02 - Kanye West - Flashing Lights Lyrics.mp3"
+    },
+    {
+        "nombre": "03 - Plain White Ts - Hey There Delilah Lyrics",
+        "ruta": "assets/audio/03 - Plain White Ts - Hey There Delilah Lyrics.mp3"
+    },
+    {
+        "nombre": "003 - Reik - Noviembre sin ti Letra",
+        "ruta": "assets/audio/003 - Reik - Noviembre sin ti Letra.mp3"
     },
     {
         "nombre": "04 - Gnarls Barkley - Crazy Lyrics",
         "ruta": "assets/audio/04 - Gnarls Barkley - Crazy Lyrics.mp3"
     },
     {
-        "nombre": "05 - This Love - Maroon 5 (Lyrics) 🎵",
-        "ruta": "assets/audio/05 - This Love - Maroon 5 (Lyrics) 🎵.mp3"
+        "nombre": "004 - Miranda - Perfecta Letra con Video Oficial",
+        "ruta": "assets/audio/004 - Miranda - Perfecta Letra con Video Oficial.mp3"
     },
     {
-        "nombre": "06 - Adele - Make You Feel My Love (Lyrics)",
-        "ruta": "assets/audio/06 - Adele - Make You Feel My Love (Lyrics).mp3"
+        "nombre": "005 - Aventura Dile al Amor Letra",
+        "ruta": "assets/audio/005 - Aventura Dile al Amor Letra.mp3"
     },
     {
-        "nombre": "07 - Eminem - Stan (Lyrics) ft. Dido",
-        "ruta": "assets/audio/07 - Eminem - Stan (Lyrics) ft. Dido.mp3"
+        "nombre": "05 - This Love - Maroon 5 Lyrics",
+        "ruta": "assets/audio/05 - This Love - Maroon 5 Lyrics.mp3"
     },
     {
-        "nombre": "08 - Papa Roach - Last Resort (Lyrics)",
-        "ruta": "assets/audio/08 - Papa Roach - Last Resort (Lyrics).mp3"
+        "nombre": "06 - Adele - Make You Feel My Love Lyrics",
+        "ruta": "assets/audio/06 - Adele - Make You Feel My Love Lyrics.mp3"
     },
     {
-        "nombre": "09 - Kanye West - Gold Digger (feat. Jamie Foxx) Lyrics Video",
-        "ruta": "assets/audio/09 - Kanye West - Gold Digger (feat. Jamie Foxx) Lyrics Video.mp3"
+        "nombre": "006 - Joan Sebastian - Me Gustas Letra Oficial",
+        "ruta": "assets/audio/006 - Joan Sebastian - Me Gustas Letra Oficial.mp3"
     },
     {
-        "nombre": "10 - The Fray - How to Save a Life (Lyrics)",
-        "ruta": "assets/audio/10 - The Fray - How to Save a Life (Lyrics).mp3"
+        "nombre": "07 - Eminem - Stan Lyrics ft Dido",
+        "ruta": "assets/audio/07 - Eminem - Stan Lyrics ft Dido.mp3"
     },
     {
-        "nombre": "11 - Nelly Furtado - Promiscuous (Lyrics) ft. Timbaland",
-        "ruta": "assets/audio/11 - Nelly Furtado - Promiscuous (Lyrics) ft. Timbaland.mp3"
+        "nombre": "007 - Mana - Bendita tu luz Official CantoYo Video",
+        "ruta": "assets/audio/007 - Mana - Bendita tu luz Official CantoYo Video.mp3"
     },
     {
-        "nombre": "12 - Beyoncé – Crazy in Love (Lyrics)",
-        "ruta": "assets/audio/12 - Beyoncé – Crazy in Love (Lyrics).mp3"
+        "nombre": "08 - Papa Roach - Last Resort Lyrics",
+        "ruta": "assets/audio/08 - Papa Roach - Last Resort Lyrics.mp3"
     },
     {
-        "nombre": "13 - Red Hot Chili Peppers - Can't Stop (Lyrics)",
-        "ruta": "assets/audio/13 - Red Hot Chili Peppers - Can't Stop (Lyrics).mp3"
+        "nombre": "008 - Shakira - Las de la Intuicion Letra",
+        "ruta": "assets/audio/008 - Shakira - Las de la Intuicion Letra.mp3"
     },
     {
-        "nombre": "14 - Kesha - TiK ToK (Lyrics)",
-        "ruta": "assets/audio/14 - Kesha - TiK ToK (Lyrics).mp3"
+        "nombre": "09 - Kanye West - Gold Digger feat Jamie Foxx Lyrics Video",
+        "ruta": "assets/audio/09 - Kanye West - Gold Digger feat Jamie Foxx Lyrics Video.mp3"
     },
     {
-        "nombre": "15 - Lady Gaga - Bad Romance (Lyrics)",
-        "ruta": "assets/audio/15 - Lady Gaga - Bad Romance (Lyrics).mp3"
+        "nombre": "009 - Las Ketchup Asereje Spanish English lyrics",
+        "ruta": "assets/audio/009 - Las Ketchup Asereje Spanish English lyrics.mp3"
     },
     {
-        "nombre": "16 - Britney Spears - Toxic (Lyrics)",
-        "ruta": "assets/audio/16 - Britney Spears - Toxic (Lyrics).mp3"
+        "nombre": "010 - Julieta Venegas - Limon Y Sal Letra",
+        "ruta": "assets/audio/010 - Julieta Venegas - Limon Y Sal Letra.mp3"
     },
     {
-        "nombre": "17 - Lady Gaga - Poker Face (Lyrics)",
-        "ruta": "assets/audio/17 - Lady Gaga - Poker Face (Lyrics).mp3"
+        "nombre": "10 - The Fray - How to Save a Life Lyrics",
+        "ruta": "assets/audio/10 - The Fray - How to Save a Life Lyrics.mp3"
     },
     {
-        "nombre": "18 - Usher - Yeah! (Lyrics) ft. Lil Jon, Ludacris",
-        "ruta": "assets/audio/18 - Usher - Yeah! (Lyrics) ft. Lil Jon, Ludacris.mp3"
+        "nombre": "11 - Nelly Furtado - Promiscuous Lyrics ft Timbaland",
+        "ruta": "assets/audio/11 - Nelly Furtado - Promiscuous Lyrics ft Timbaland.mp3"
     },
     {
-        "nombre": "19 - Snow Patrol - Chasing Cars (Lyrics)",
-        "ruta": "assets/audio/19 - Snow Patrol - Chasing Cars (Lyrics).mp3"
+        "nombre": "011 - Sin Bandera - Que Lloro LetraLyrics",
+        "ruta": "assets/audio/011 - Sin Bandera - Que Lloro LetraLyrics.mp3"
     },
     {
-        "nombre": "21 - OutKast - Hey Ya! (Lyrics)",
-        "ruta": "assets/audio/21 - OutKast - Hey Ya! (Lyrics).mp3"
+        "nombre": "012 - Angel Khriz Ven Bailalo Letra",
+        "ruta": "assets/audio/012 - Angel Khriz Ven Bailalo Letra.mp3"
     },
     {
-        "nombre": "22 - System Of A Down - Chop Suey (Lyrics Video)",
-        "ruta": "assets/audio/22 - System Of A Down - Chop Suey (Lyrics Video).mp3"
+        "nombre": "12 - Beyonce Crazy in Love Lyrics",
+        "ruta": "assets/audio/12 - Beyonce Crazy in Love Lyrics.mp3"
     },
     {
-        "nombre": "23 - Kanye West - Stronger (lyrics)",
-        "ruta": "assets/audio/23 - Kanye West - Stronger (lyrics).mp3"
+        "nombre": "013 - Marc Anthony - Valio La Pena Salsa Version Letra",
+        "ruta": "assets/audio/013 - Marc Anthony - Valio La Pena Salsa Version Letra.mp3"
     },
     {
-        "nombre": "24 - Gorillaz - Feel Good Inc. (Letra⧸Lyrics)",
-        "ruta": "assets/audio/24 - Gorillaz - Feel Good Inc. (Letra⧸Lyrics).mp3"
+        "nombre": "13 - Red Hot Chili Peppers - Cant Stop Lyrics",
+        "ruta": "assets/audio/13 - Red Hot Chili Peppers - Cant Stop Lyrics.mp3"
     },
     {
-        "nombre": "25 - Red Hot Chili Peppers - Californication (Lyrics)",
-        "ruta": "assets/audio/25 - Red Hot Chili Peppers - Californication (Lyrics).mp3"
+        "nombre": "014 - Daddy Yankee Llamado de Emergencia Letra",
+        "ruta": "assets/audio/014 - Daddy Yankee Llamado de Emergencia Letra.mp3"
     },
     {
-        "nombre": "26 - She Will Be Loved - Maroon 5 (Lyrics) 🎵",
-        "ruta": "assets/audio/26 - She Will Be Loved - Maroon 5 (Lyrics) 🎵.mp3"
+        "nombre": "14 - Kesha - TiK ToK Lyrics",
+        "ruta": "assets/audio/14 - Kesha - TiK ToK Lyrics.mp3"
     },
     {
-        "nombre": "27 - The Black Eyed Peas - I Gotta Feeling (Lyrics)",
-        "ruta": "assets/audio/27 - The Black Eyed Peas - I Gotta Feeling (Lyrics).mp3"
+        "nombre": "015 - Christina Aguilera - Pero Me Acuerdo De Ti LetraLyrics",
+        "ruta": "assets/audio/015 - Christina Aguilera - Pero Me Acuerdo De Ti LetraLyrics.mp3"
     },
     {
-        "nombre": "28 - Kings Of Leon - Sex on Fire (Lyrics)",
-        "ruta": "assets/audio/28 - Kings Of Leon - Sex on Fire (Lyrics).mp3"
+        "nombre": "15 - Lady Gaga - Bad Romance Lyrics",
+        "ruta": "assets/audio/15 - Lady Gaga - Bad Romance Lyrics.mp3"
     },
     {
-        "nombre": "29 - Coldplay - Fix You (Lyrics)",
-        "ruta": "assets/audio/29 - Coldplay - Fix You (Lyrics).mp3"
+        "nombre": "016 - aqui estoy yo- luis fonsi lyrics",
+        "ruta": "assets/audio/016 - aqui estoy yo- luis fonsi lyrics.mp3"
     },
     {
-        "nombre": "30 - 50 Cent - In Da Club (Lyrics)",
-        "ruta": "assets/audio/30 - 50 Cent - In Da Club (Lyrics).mp3"
+        "nombre": "16 - Britney Spears - Toxic Lyrics",
+        "ruta": "assets/audio/16 - Britney Spears - Toxic Lyrics.mp3"
     },
     {
-        "nombre": "31 - Train - Hey, Soul Sister (Lyrics)",
-        "ruta": "assets/audio/31 - Train - Hey, Soul Sister (Lyrics).mp3"
+        "nombre": "17 - Lady Gaga - Poker Face Lyrics",
+        "ruta": "assets/audio/17 - Lady Gaga - Poker Face Lyrics.mp3"
     },
     {
-        "nombre": "32 - Rihanna - Umbrella (Lyrics)",
-        "ruta": "assets/audio/32 - Rihanna - Umbrella (Lyrics).mp3"
+        "nombre": "017 - Mientes Tan Bien - Sin bandera LetraLyrics",
+        "ruta": "assets/audio/017 - Mientes Tan Bien - Sin bandera LetraLyrics.mp3"
     },
     {
-        "nombre": "33 - Halo - Beyoncé (Lyrics)",
-        "ruta": "assets/audio/33 - Halo - Beyoncé (Lyrics).mp3"
+        "nombre": "018 - La Oreja de Van Gogh - La Playa - Letra",
+        "ruta": "assets/audio/018 - La Oreja de Van Gogh - La Playa - Letra.mp3"
     },
     {
-        "nombre": "34 - Keane - Somewhere Only We Know (Lyrics)",
-        "ruta": "assets/audio/34 - Keane - Somewhere Only We Know (Lyrics).mp3"
+        "nombre": "18 - Usher - Yeah Lyrics ft Lil Jon Ludacris",
+        "ruta": "assets/audio/18 - Usher - Yeah Lyrics ft Lil Jon Ludacris.mp3"
     },
     {
-        "nombre": "35 - Miley Cyrus - Party In The U.S.A (Lyrics)",
-        "ruta": "assets/audio/35 - Miley Cyrus - Party In The U.S.A (Lyrics).mp3"
+        "nombre": "019 - Aventura - El Malo Letra",
+        "ruta": "assets/audio/019 - Aventura - El Malo Letra.mp3"
     },
     {
-        "nombre": "36 - Shakira - Hips Don't Lie (Lyrics) ft. Wyclef Jean",
-        "ruta": "assets/audio/36 - Shakira - Hips Don't Lie (Lyrics) ft. Wyclef Jean.mp3"
+        "nombre": "19 - Snow Patrol - Chasing Cars Lyrics",
+        "ruta": "assets/audio/19 - Snow Patrol - Chasing Cars Lyrics.mp3"
     },
     {
-        "nombre": "37 - The White Stripes - 'Seven Nation Army＂ (Lyrics)",
-        "ruta": "assets/audio/37 - The White Stripes - 'Seven Nation Army＂ (Lyrics).mp3"
+        "nombre": "020 - Zion Lennox Daddy Yankee Yo Voy LetraLyrics",
+        "ruta": "assets/audio/020 - Zion Lennox Daddy Yankee Yo Voy LetraLyrics.mp3"
     },
     {
-        "nombre": "38 - Arctic Monkeys - 505 (Lyrics)",
-        "ruta": "assets/audio/38 - Arctic Monkeys - 505 (Lyrics).mp3"
+        "nombre": "021 - Luis Fonsi No Me Doy Por Vencido Letra",
+        "ruta": "assets/audio/021 - Luis Fonsi No Me Doy Por Vencido Letra.mp3"
     },
     {
-        "nombre": "39 - Eminem - Mockingbird (Lyrics)",
-        "ruta": "assets/audio/39 - Eminem - Mockingbird (Lyrics).mp3"
+        "nombre": "21 - OutKast - Hey Ya Lyrics",
+        "ruta": "assets/audio/21 - OutKast - Hey Ya Lyrics.mp3"
     },
     {
-        "nombre": "40 - Linkin Park -  Numb (Lyrics)",
-        "ruta": "assets/audio/40 - Linkin Park -  Numb (Lyrics).mp3"
+        "nombre": "22 - System Of A Down - Chop Suey Lyrics Video",
+        "ruta": "assets/audio/22 - System Of A Down - Chop Suey Lyrics Video.mp3"
     },
     {
-        "nombre": "41 - Eminem - The Real Slim Shady (Lyrics)",
-        "ruta": "assets/audio/41 - Eminem - The Real Slim Shady (Lyrics).mp3"
+        "nombre": "022 - Tego Calderon - Pa Que Retozen Letra",
+        "ruta": "assets/audio/022 - Tego Calderon - Pa Que Retozen Letra.mp3"
     },
     {
-        "nombre": "42 - Jason Mraz - I'm Yours (Lyrics)",
-        "ruta": "assets/audio/42 - Jason Mraz - I'm Yours (Lyrics).mp3"
+        "nombre": "23 - Kanye West - Stronger lyrics",
+        "ruta": "assets/audio/23 - Kanye West - Stronger lyrics.mp3"
     },
     {
-        "nombre": "43 - Coldplay - The Scientist (Lyrics)",
-        "ruta": "assets/audio/43 - Coldplay - The Scientist (Lyrics).mp3"
+        "nombre": "023 - Sin Bandera - Entra En Mi Vida Letra",
+        "ruta": "assets/audio/023 - Sin Bandera - Entra En Mi Vida Letra.mp3"
+    },
+    {
+        "nombre": "024 - Camila Todo Cambio Letra",
+        "ruta": "assets/audio/024 - Camila Todo Cambio Letra.mp3"
+    },
+    {
+        "nombre": "24 - Gorillaz - Feel Good Inc LetraLyrics",
+        "ruta": "assets/audio/24 - Gorillaz - Feel Good Inc LetraLyrics.mp3"
+    },
+    {
+        "nombre": "025 - Juanes - Es Por Ti Letra",
+        "ruta": "assets/audio/025 - Juanes - Es Por Ti Letra.mp3"
+    },
+    {
+        "nombre": "25 - Red Hot Chili Peppers - Californication Lyrics",
+        "ruta": "assets/audio/25 - Red Hot Chili Peppers - Californication Lyrics.mp3"
+    },
+    {
+        "nombre": "026 - Dile - Don Omar Letra Lyrics",
+        "ruta": "assets/audio/026 - Dile - Don Omar Letra Lyrics.mp3"
+    },
+    {
+        "nombre": "26 - She Will Be Loved - Maroon 5 Lyrics",
+        "ruta": "assets/audio/26 - She Will Be Loved - Maroon 5 Lyrics.mp3"
+    },
+    {
+        "nombre": "027 - Chayanne - Un Siglo Sin Ti LyricsLetra",
+        "ruta": "assets/audio/027 - Chayanne - Un Siglo Sin Ti LyricsLetra.mp3"
+    },
+    {
+        "nombre": "27 - The Black Eyed Peas - I Gotta Feeling Lyrics",
+        "ruta": "assets/audio/27 - The Black Eyed Peas - I Gotta Feeling Lyrics.mp3"
+    },
+    {
+        "nombre": "028 - Franco De Vita - Tu de que vas Letra Oficial",
+        "ruta": "assets/audio/028 - Franco De Vita - Tu de que vas Letra Oficial.mp3"
+    },
+    {
+        "nombre": "28 - Kings Of Leon - Sex on Fire Lyrics",
+        "ruta": "assets/audio/28 - Kings Of Leon - Sex on Fire Lyrics.mp3"
+    },
+    {
+        "nombre": "29 - Coldplay - Fix You Lyrics",
+        "ruta": "assets/audio/29 - Coldplay - Fix You Lyrics.mp3"
+    },
+    {
+        "nombre": "029 - Yo Quisiera Letra - Reik",
+        "ruta": "assets/audio/029 - Yo Quisiera Letra - Reik.mp3"
+    },
+    {
+        "nombre": "30 - 50 Cent - In Da Club Lyrics",
+        "ruta": "assets/audio/30 - 50 Cent - In Da Club Lyrics.mp3"
+    },
+    {
+        "nombre": "030 - virtual diva - don omar letra",
+        "ruta": "assets/audio/030 - virtual diva - don omar letra.mp3"
+    },
+    {
+        "nombre": "031 - Aventura - El Perdedor Letra",
+        "ruta": "assets/audio/031 - Aventura - El Perdedor Letra.mp3"
+    },
+    {
+        "nombre": "31 - Train - Hey Soul Sister Lyrics",
+        "ruta": "assets/audio/31 - Train - Hey Soul Sister Lyrics.mp3"
+    },
+    {
+        "nombre": "032 - La Quinta Estacion El Sol No Regresa Letra",
+        "ruta": "assets/audio/032 - La Quinta Estacion El Sol No Regresa Letra.mp3"
+    },
+    {
+        "nombre": "32 - Rihanna - Umbrella Lyrics",
+        "ruta": "assets/audio/32 - Rihanna - Umbrella Lyrics.mp3"
+    },
+    {
+        "nombre": "33 - Halo - Beyonce Lyrics",
+        "ruta": "assets/audio/33 - Halo - Beyonce Lyrics.mp3"
+    },
+    {
+        "nombre": "033 - MANA - Mariposa Traicionera letra en espanol",
+        "ruta": "assets/audio/033 - MANA - Mariposa Traicionera letra en espanol.mp3"
+    },
+    {
+        "nombre": "34 - Keane - Somewhere Only We Know Lyrics",
+        "ruta": "assets/audio/34 - Keane - Somewhere Only We Know Lyrics.mp3"
+    },
+    {
+        "nombre": "034 - Manu Chao - Me Gustas Tu LetraLyrics",
+        "ruta": "assets/audio/034 - Manu Chao - Me Gustas Tu LetraLyrics.mp3"
+    },
+    {
+        "nombre": "035 - Apuro dolor - Son By Four LetraLyrics",
+        "ruta": "assets/audio/035 - Apuro dolor - Son By Four LetraLyrics.mp3"
+    },
+    {
+        "nombre": "35 - Miley Cyrus - Party In The USA Lyrics",
+        "ruta": "assets/audio/35 - Miley Cyrus - Party In The USA Lyrics.mp3"
+    },
+    {
+        "nombre": "036 - Julieta Venegas - Me Voy",
+        "ruta": "assets/audio/036 - Julieta Venegas - Me Voy.mp3"
+    },
+    {
+        "nombre": "36 - Shakira - Hips Dont Lie Lyrics ft Wyclef Jean",
+        "ruta": "assets/audio/36 - Shakira - Hips Dont Lie Lyrics ft Wyclef Jean.mp3"
+    },
+    {
+        "nombre": "037 - Don Omar Salio El Sol Letra",
+        "ruta": "assets/audio/037 - Don Omar Salio El Sol Letra.mp3"
+    },
+    {
+        "nombre": "37 - The White Stripes - Seven Nation Army Lyrics",
+        "ruta": "assets/audio/37 - The White Stripes - Seven Nation Army Lyrics.mp3"
+    },
+    {
+        "nombre": "38 - Arctic Monkeys - 505 Lyrics",
+        "ruta": "assets/audio/38 - Arctic Monkeys - 505 Lyrics.mp3"
+    },
+    {
+        "nombre": "038 - Juan Gabriel - Abrazame Muy Fuerte Letra",
+        "ruta": "assets/audio/038 - Juan Gabriel - Abrazame Muy Fuerte Letra.mp3"
+    },
+    {
+        "nombre": "39 - Eminem - Mockingbird Lyrics",
+        "ruta": "assets/audio/39 - Eminem - Mockingbird Lyrics.mp3"
+    },
+    {
+        "nombre": "039 - Reyli Barba - Amor del Bueno LETRAlyrics",
+        "ruta": "assets/audio/039 - Reyli Barba - Amor del Bueno LETRAlyrics.mp3"
+    },
+    {
+        "nombre": "40 - Linkin Park - Numb Lyrics",
+        "ruta": "assets/audio/40 - Linkin Park - Numb Lyrics.mp3"
+    },
+    {
+        "nombre": "040 - PERDONAME - LA FACTORIA EDDY LOVER LETRALYRIC",
+        "ruta": "assets/audio/040 - PERDONAME - LA FACTORIA EDDY LOVER LETRALYRIC.mp3"
+    },
+    {
+        "nombre": "041 - Calle 13 Atrevete-Te-Te Letra",
+        "ruta": "assets/audio/041 - Calle 13 Atrevete-Te-Te Letra.mp3"
+    },
+    {
+        "nombre": "41 - Eminem - The Real Slim Shady Lyrics",
+        "ruta": "assets/audio/41 - Eminem - The Real Slim Shady Lyrics.mp3"
+    },
+    {
+        "nombre": "042 - Cafe Tacvba - Eres Letra en Espanol",
+        "ruta": "assets/audio/042 - Cafe Tacvba - Eres Letra en Espanol.mp3"
+    },
+    {
+        "nombre": "42 - Jason Mraz - Im Yours Lyrics",
+        "ruta": "assets/audio/42 - Jason Mraz - Im Yours Lyrics.mp3"
+    },
+    {
+        "nombre": "043 - Bacilos - Caraluna Letra",
+        "ruta": "assets/audio/043 - Bacilos - Caraluna Letra.mp3"
+    },
+    {
+        "nombre": "43 - Coldplay - The Scientist Lyrics",
+        "ruta": "assets/audio/43 - Coldplay - The Scientist Lyrics.mp3"
+    },
+    {
+        "nombre": "044 - Aventura Ft Don Omar - Ella Y Yo Letra",
+        "ruta": "assets/audio/044 - Aventura Ft Don Omar - Ella Y Yo Letra.mp3"
     },
     {
         "nombre": "44 - Till I Collapse Lyrics by Eminem",
         "ruta": "assets/audio/44 - Till I Collapse Lyrics by Eminem.mp3"
     },
     {
-        "nombre": "46 - Coldplay - Viva la Vida (Lyrics)",
-        "ruta": "assets/audio/46 - Coldplay - Viva la Vida (Lyrics).mp3"
+        "nombre": "045 - Gasolina Lyrics with English Translation - Daddy Yankee",
+        "ruta": "assets/audio/045 - Gasolina Lyrics with English Translation - Daddy Yankee.mp3"
     },
     {
-        "nombre": "47 - Eminem - Without Me (Lyrics)",
-        "ruta": "assets/audio/47 - Eminem - Without Me (Lyrics).mp3"
+        "nombre": "46 - Coldplay - Viva la Vida Lyrics",
+        "ruta": "assets/audio/46 - Coldplay - Viva la Vida Lyrics.mp3"
     },
     {
-        "nombre": "48 - The Killers - Mr. Brightside (Lyrics)",
-        "ruta": "assets/audio/48 - The Killers - Mr. Brightside (Lyrics).mp3"
+        "nombre": "046 - Juanes - La Camisa Negra Letra",
+        "ruta": "assets/audio/046 - Juanes - La Camisa Negra Letra.mp3"
     },
     {
-        "nombre": "49 - Eminem - Lose Yourself (Lyrics)",
-        "ruta": "assets/audio/49 - Eminem - Lose Yourself (Lyrics).mp3"
+        "nombre": "47 - Eminem - Without Me Lyrics",
+        "ruta": "assets/audio/47 - Eminem - Without Me Lyrics.mp3"
+    },
+    {
+        "nombre": "047 - Shakira - La Tortura LetraLyrics feat Alejandro Sanz",
+        "ruta": "assets/audio/047 - Shakira - La Tortura LetraLyrics feat Alejandro Sanz.mp3"
+    },
+    {
+        "nombre": "048 - Alejandro Fernandez - Me Dedique a Perderte Letra",
+        "ruta": "assets/audio/048 - Alejandro Fernandez - Me Dedique a Perderte Letra.mp3"
+    },
+    {
+        "nombre": "48 - The Killers - Mr Brightside Lyrics",
+        "ruta": "assets/audio/48 - The Killers - Mr Brightside Lyrics.mp3"
+    },
+    {
+        "nombre": "049 - Carlos Baute Colgando en Tus Manos con Marta Sanchez Letra",
+        "ruta": "assets/audio/049 - Carlos Baute Colgando en Tus Manos con Marta Sanchez Letra.mp3"
+    },
+    {
+        "nombre": "49 - Eminem - Lose Yourself Lyrics",
+        "ruta": "assets/audio/49 - Eminem - Lose Yourself Lyrics.mp3"
     },
     {
         "nombre": "50 - Coldplay - Yellow Lyrics",
         "ruta": "assets/audio/50 - Coldplay - Yellow Lyrics.mp3"
+    },
+    {
+        "nombre": "050 - La Oreja de Van Gogh - Rosas LetraLyrics",
+        "ruta": "assets/audio/050 - La Oreja de Van Gogh - Rosas LetraLyrics.mp3"
     }
 ]
